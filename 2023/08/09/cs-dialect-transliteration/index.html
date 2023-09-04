@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Merriweather:300,300italic,400,400italic,700,700italic|Menlo:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hydropek.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="长沙话拼音方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="长沙话拼音方案">
+<meta property="og:url" content="https://hydropek.github.io/2023/08/09/cs-dialect-transliteration/index.html">
+<meta property="og:site_name" content="hydropek&#39;s blog">
+<meta property="og:description" content="长沙话拼音方案">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-09T07:18:14.000Z">
+<meta property="article:modified_time" content="2023-08-09T09:05:32.853Z">
+<meta property="article:author" content="hydropek">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hydropek.github.io/2023/08/09/cs-dialect-transliteration/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>长沙话拼音方案 | hydropek's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">hydropek's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hydropek.github.io/2023/08/09/cs-dialect-transliteration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hydropek">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hydropek's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          长沙话拼音方案
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-09 15:18:14 / 修改时间：17:05:32" itemprop="dateCreated datePublished" datetime="2023-08-09T15:18:14+08:00">2023-08-09</time>
+            </span>
+
+          
+            <div class="post-description">长沙话拼音方案</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="声母"><a class="markdownIt-Anchor" href="#声母"></a> 声母</h2>
+<table>
+<thead>
+<tr>
+<th>音标</th>
+<th>拼音</th>
+<th>例字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>∅</td>
+<td>∅</td>
+<td>移</td>
+</tr>
+<tr>
+<td>p</td>
+<td><code>b</code></td>
+<td>皮</td>
+</tr>
+<tr>
+<td>pʰ</td>
+<td><code>p</code></td>
+<td>披</td>
+</tr>
+<tr>
+<td>t</td>
+<td><code>d</code></td>
+<td>低</td>
+</tr>
+<tr>
+<td>tʰ</td>
+<td><code>t</code></td>
+<td>梯</td>
+</tr>
+<tr>
+<td>k</td>
+<td><code>g</code></td>
+<td>家</td>
+</tr>
+<tr>
+<td>kʰ</td>
+<td><code>k</code></td>
+<td>掐</td>
+</tr>
+<tr>
+<td>m</td>
+<td><code>m</code></td>
+<td>米</td>
+</tr>
+<tr>
+<td>ȵ</td>
+<td><code>nj</code></td>
+<td>宜</td>
+</tr>
+<tr>
+<td>ŋ</td>
+<td><code>ng</code></td>
+<td>牙</td>
+</tr>
+<tr>
+<td>f</td>
+<td><code>f</code></td>
+<td>花</td>
+</tr>
+<tr>
+<td>x</td>
+<td><code>h</code></td>
+<td>瞎</td>
+</tr>
+<tr>
+<td>z</td>
+<td><code>r</code></td>
+<td>日</td>
+</tr>
+<tr>
+<td>ts</td>
+<td><code>z</code></td>
+<td>支</td>
+</tr>
+<tr>
+<td>tsʰ</td>
+<td><code>c</code></td>
+<td>匙</td>
+</tr>
+<tr>
+<td>s</td>
+<td><code>s</code></td>
+<td>施</td>
+</tr>
+<tr>
+<td>tɕ</td>
+<td><code>zj</code></td>
+<td>饥</td>
+</tr>
+<tr>
+<td>tɕʰ</td>
+<td><code>cj</code></td>
+<td>欺</td>
+</tr>
+<tr>
+<td>ɕ</td>
+<td><code>sj</code></td>
+<td>西</td>
+</tr>
+</tbody>
+</table>
+<h2 id="韵母"><a class="markdownIt-Anchor" href="#韵母"></a> 韵母</h2>
+<table>
+<thead>
+<tr>
+<th>音标</th>
+<th>拼音</th>
+<th>例字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a(ɑ)</td>
+<td><code>a</code></td>
+<td>巴</td>
+</tr>
+<tr>
+<td>ia</td>
+<td><code>ia</code></td>
+<td>佳</td>
+</tr>
+<tr>
+<td>ua</td>
+<td><code>ua</code></td>
+<td>蛙</td>
+</tr>
+<tr>
+<td>ya</td>
+<td><code>jua</code></td>
+<td>抓</td>
+</tr>
+<tr>
+<td>o</td>
+<td><code>o</code></td>
+<td>多</td>
+</tr>
+<tr>
+<td>io</td>
+<td><code>io</code></td>
+<td>略</td>
+</tr>
+<tr>
+<td>ɤ</td>
+<td><code>e</code></td>
+<td>白</td>
+</tr>
+<tr>
+<td>uɤ</td>
+<td><code>ue</code></td>
+<td>国</td>
+</tr>
+<tr>
+<td>ie</td>
+<td><code>ie</code></td>
+<td>别</td>
+</tr>
+<tr>
+<td>ye</td>
+<td><code>jue</code></td>
+<td>月</td>
+</tr>
+<tr>
+<td>i</td>
+<td><code>i</code></td>
+<td>七</td>
+</tr>
+<tr>
+<td>u</td>
+<td><code>u</code></td>
+<td>孤</td>
+</tr>
+<tr>
+<td>y</td>
+<td><code>ju</code></td>
+<td>局</td>
+</tr>
+<tr>
+<td>ɿ</td>
+<td><code>x</code></td>
+<td>支</td>
+</tr>
+<tr>
+<td>ai</td>
+<td><code>ai</code></td>
+<td>牌</td>
+</tr>
+<tr>
+<td>uai</td>
+<td><code>uai</code></td>
+<td>外</td>
+</tr>
+<tr>
+<td>yai</td>
+<td><code>juai</code></td>
+<td>衰</td>
+</tr>
+<tr>
+<td>ei</td>
+<td><code>ei</code></td>
+<td>堆</td>
+</tr>
+<tr>
+<td>uei</td>
+<td><code>uei</code></td>
+<td>规</td>
+</tr>
+<tr>
+<td>yei</td>
+<td><code>juei</code></td>
+<td>吹</td>
+</tr>
+<tr>
+<td>au</td>
+<td><code>au</code></td>
+<td>包</td>
+</tr>
+<tr>
+<td>iau</td>
+<td><code>iau</code></td>
+<td>标</td>
+</tr>
+<tr>
+<td>əu</td>
+<td><code>ou</code></td>
+<td>谋</td>
+</tr>
+<tr>
+<td>iəu</td>
+<td><code>iou</code></td>
+<td>溜</td>
+</tr>
+<tr>
+<td>iẽ</td>
+<td><code>ien</code></td>
+<td>烟</td>
+</tr>
+<tr>
+<td>yẽ</td>
+<td><code>juen</code></td>
+<td>穿</td>
+</tr>
+<tr>
+<td>an</td>
+<td><code>an</code></td>
+<td>山</td>
+</tr>
+<tr>
+<td>ian</td>
+<td><code>ian</code></td>
+<td>央</td>
+</tr>
+<tr>
+<td>uan</td>
+<td><code>uan</code></td>
+<td>筐</td>
+</tr>
+<tr>
+<td>yan</td>
+<td><code>juan</code></td>
+<td>撞</td>
+</tr>
+<tr>
+<td>ən</td>
+<td><code>en</code></td>
+<td>蚊</td>
+</tr>
+<tr>
+<td>uən</td>
+<td><code>uen</code></td>
+<td>昆</td>
+</tr>
+<tr>
+<td>yn</td>
+<td><code>jun</code></td>
+<td>永</td>
+</tr>
+<tr>
+<td>in</td>
+<td><code>in</code></td>
+<td>雄</td>
+</tr>
+<tr>
+<td>ɤ̃</td>
+<td><code>ern</code></td>
+<td>善</td>
+</tr>
+<tr>
+<td>õ</td>
+<td><code>on</code></td>
+<td>宽</td>
+</tr>
+</tbody>
+</table>
+<h2 id="声调"><a class="markdownIt-Anchor" href="#声调"></a> 声调：</h2>
+<table>
+<thead>
+<tr>
+<th>调名</th>
+<th>符号</th>
+<th>例字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>阴平(1)</td>
+<td><code>ā ō ē ī ū x̄</code></td>
+<td>猪</td>
+</tr>
+<tr>
+<td>阳平(2)</td>
+<td><code>á ó é í ú x́</code></td>
+<td>除</td>
+</tr>
+<tr>
+<td>上声(3)</td>
+<td><code>à ò è ì ù x̀</code></td>
+<td>主</td>
+</tr>
+<tr>
+<td>阴去(5)</td>
+<td><code>â ô ê î û x̂</code></td>
+<td>句</td>
+</tr>
+<tr>
+<td>阳去(6)</td>
+<td><code>ǎ ǒ ě ǐ ǔ x̌</code></td>
+<td>住</td>
+</tr>
+<tr>
+<td>入声(7)</td>
+<td><code>ä ö ë ï ü ẍ</code></td>
+<td>橘</td>
+</tr>
+</tbody>
+</table>
+<h2 id="简写"><a class="markdownIt-Anchor" href="#简写"></a> 简写</h2>
+<p>（推荐，拼式更短的同时不造成歧义）：</p>
+<ul>
+<li>
+<p><code>*jj*</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>  <code>*j*</code></p>
+<p>例如：撞 <code>zj + juǎn</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>  <code>zjuǎn</code></p>
+</li>
+<li>
+<p><code>*ji?*</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> <code>*j?*</code></p>
+<p>例如：</p>
+<p>江 <code>zj + iān</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> <code>zjān</code></p>
+<p>牛 <code>nj + ióu</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> <code>njóu</code></p>
+<p>鸡 <code>zj</code> + <code>ī</code><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> <code>zjī</code></p>
+</li>
+</ul>
+<hr />
+<p>refer:<br />
+<a target="_blank" rel="noopener" href="https://ambar.li/xiangyin/">湘音：长沙话发音字典</a><br />
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/353989594">湘语-长沙话拼音方案（Beta 5.0，持续更新……）</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/30/min-25/" rel="prev" title="min-25 筛">
+      <i class="fa fa-chevron-left"></i> min-25 筛
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%AF%8D"><span class="nav-number">1.</span> <span class="nav-text"> 声母</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B5%E6%AF%8D"><span class="nav-number">2.</span> <span class="nav-text"> 韵母</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E8%B0%83"><span class="nav-number">3.</span> <span class="nav-text"> 声调：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%86%99"><span class="nav-number">4.</span> <span class="nav-text"> 简写</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hydropek</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hydropek</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
+
+  
+
+</body>
+</html>

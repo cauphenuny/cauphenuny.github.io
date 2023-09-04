@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Merriweather:300,300italic,400,400italic,700,700italic|Menlo:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hydropek.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="树状数组 bit.h 12345678&#x2F;&#x2F;自定义类型需重载 + - 运算符template &lt;typename T, int maxn&gt;class binary_indexed_tree &amp;#123;    T c[maxn + 10]; public:    void add(int p, T v) &amp;#123; p++; for (; p &lt;&#x3D; maxn; p +&#x3D; p &amp;a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些有用的小模板">
+<meta property="og:url" content="https://hydropek.github.io/2021/02/23/algorithm-templates/index.html">
+<meta property="og:site_name" content="hydropek&#39;s blog">
+<meta property="og:description" content="树状数组 bit.h 12345678&#x2F;&#x2F;自定义类型需重载 + - 运算符template &lt;typename T, int maxn&gt;class binary_indexed_tree &amp;#123;    T c[maxn + 10]; public:    void add(int p, T v) &amp;#123; p++; for (; p &lt;&#x3D; maxn; p +&#x3D; p &amp;a">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-23T13:54:05.000Z">
+<meta property="article:modified_time" content="2023-08-02T15:38:28.649Z">
+<meta property="article:author" content="hydropek">
+<meta property="article:tag" content="模板">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hydropek.github.io/2021/02/23/algorithm-templates/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>一些有用的小模板 | hydropek's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">hydropek's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hydropek.github.io/2021/02/23/algorithm-templates/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hydropek">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hydropek's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一些有用的小模板
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-23 21:54:05" itemprop="dateCreated datePublished" datetime="2021-02-23T21:54:05+08:00">2021-02-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-08-02 23:38:28" itemprop="dateModified" datetime="2023-08-02T23:38:28+08:00">2023-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="index"><span itemprop="name">模板</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>树状数组</strong> bit.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义类型需重载 + - 运算符</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="type">int</span> maxn&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">binary_indexed_tree</span> &#123;</span><br><span class="line">    T c[maxn + <span class="number">10</span>]; <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p, T v)</span> </span>&#123; p++; <span class="keyword">for</span> (; p &lt;= maxn; p += p &amp; -p) c[p] += v; &#125;</span><br><span class="line">    <span class="function">T <span class="title">query</span><span class="params">(<span class="type">int</span> p)</span> </span>&#123; p++; T v = <span class="number">0</span>; <span class="keyword">for</span> (; p; p -= p &amp; -p) v += c[p]; <span class="keyword">return</span> v; &#125;</span><br><span class="line">    <span class="function">T <span class="title">range</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">query</span>(r) - <span class="built_in">query</span>(l - <span class="number">1</span>); &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr />
+<p><strong>可删堆</strong> deletable_priority_queue.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义类型要求同 priority_queue 相同。</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">deletable_priority_queue</span> &#123;</span><br><span class="line">    priority_queue&lt;T&gt; _main, _del;</span><br><span class="line">    <span class="type">int</span> siz;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (_main.<span class="built_in">size</span>() &amp;&amp; _del.<span class="built_in">size</span>() &amp;&amp; (_main.<span class="built_in">top</span>() == _del.<span class="built_in">top</span>())) _main.<span class="built_in">pop</span>(), _del.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(T x)</span> </span>&#123; _main.<span class="built_in">push</span>(x), siz++; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(T x)</span> </span>&#123; _del.<span class="built_in">push</span>(x), siz--; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123; _del.<span class="built_in">push</span>(_main.<span class="built_in">top</span>()), siz--; &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> siz == <span class="number">0</span>; &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> siz; &#125;</span><br><span class="line">    <span class="function">T <span class="title">top</span><span class="params">()</span> </span>&#123; <span class="built_in">clear</span>(); <span class="keyword">return</span> _main.<span class="built_in">top</span>(); &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr />
+<p><strong>自取模数</strong> module.h</p>
+<p>重载了 + - * / ^ inv 运算符，支持 cout 输出。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, T mod&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Num</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    T val;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">format</span><span class="params">()</span> </span>&#123; <span class="keyword">if</span> (val &lt; <span class="number">0</span>) &#123; val += ((-val) / (mod) + <span class="number">1</span>) * mod; &#125; val %= mod; &#125;</span><br><span class="line">    <span class="built_in">Num</span>(T x) &#123; val = x; format(); &#125;</span><br><span class="line">    <span class="built_in">Num</span>() &#123; val = <span class="number">0</span>; &#125;</span><br><span class="line">    <span class="type">void</span> <span class="keyword">operator</span> = (T x)  &#123; val = x; format(); &#125;</span><br><span class="line">    <span class="type">void</span> <span class="keyword">operator</span> = (Num x) &#123; val = x.val; &#125;</span><br><span class="line">    <span class="keyword">friend</span> Num <span class="keyword">operator</span> * (Num a, Num b) &#123; <span class="keyword">return</span> (a.val * b.val) % mod; &#125;</span><br><span class="line">    <span class="keyword">friend</span> Num <span class="keyword">operator</span> + (Num a, Num b) &#123; <span class="keyword">return</span> (a.val + b.val) % mod; &#125;</span><br><span class="line">    <span class="keyword">friend</span> Num <span class="keyword">operator</span> - (Num a, Num b) &#123; <span class="keyword">return</span> (a.val - b.val + mod) % mod; &#125;</span><br><span class="line">    <span class="type">void</span> <span class="keyword">operator</span> *= (Num n) &#123; val = ((*<span class="keyword">this</span>) * n).val; &#125;</span><br><span class="line">    <span class="type">void</span> <span class="keyword">operator</span> += (Num n) &#123; val = ((*<span class="keyword">this</span>) + n).val; &#125;</span><br><span class="line">    <span class="type">void</span> <span class="keyword">operator</span> -= (Num n) &#123; val = ((*<span class="keyword">this</span>) - n).val; &#125;</span><br><span class="line">    Num <span class="keyword">operator</span> ^ (T b) &#123;</span><br><span class="line">        <span class="keyword">if</span> (b &lt; <span class="number">0</span>) &#123; b += ((-b) / (mod<span class="number">-1</span>) + <span class="number">1</span>) * (mod<span class="number">-1</span>); &#125; b %= (mod<span class="number">-1</span>);</span><br><span class="line">        <span class="function">Num <span class="title">res</span><span class="params">(<span class="number">1</span>)</span>, <span class="title">a</span><span class="params">(val)</span></span>;</span><br><span class="line">        <span class="keyword">while</span> (b) &#123; <span class="keyword">if</span> (b &amp; <span class="number">1</span>) &#123; res *= a; &#125; b &gt;&gt;= <span class="number">1</span>, a *= a; &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">void</span> <span class="keyword">operator</span> ^= (T b) &#123; val = ((*<span class="keyword">this</span>) ^ b).val; &#125;</span><br><span class="line">    <span class="keyword">friend</span> Num <span class="keyword">operator</span> / (Num a, Num b) &#123; <span class="keyword">return</span> (Num)&#123;a * (b ^ <span class="number">-1</span>)&#125;; &#125;</span><br><span class="line">    <span class="type">void</span> <span class="keyword">operator</span> /= (Num n) &#123; val = ((*<span class="keyword">this</span>) * (n ^ <span class="number">-1</span>)).val; &#125;</span><br><span class="line">    <span class="function">Num <span class="title">inv</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> (*<span class="keyword">this</span>) ^ <span class="number">-1</span>; &#125;</span><br><span class="line">    <span class="keyword">typedef</span> basic_ostream&lt;<span class="type">char</span>&gt;&amp; type;</span><br><span class="line">    <span class="keyword">friend</span> type <span class="keyword">operator</span> &lt;&lt; (type &amp;out, Num x) &#123; cout &lt;&lt; x.val; <span class="keyword">return</span> out; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr />
+<p><strong>复数</strong> complex.h</p>
+<p>重载了 + - * 运算符，支持 cout 输出</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Complex</span> &#123;</span><br><span class="line">    T a, b;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Complex</span>(T new_a = <span class="number">0.</span>, T new_b = <span class="number">0.</span>): <span class="built_in">a</span>(new_a), <span class="built_in">b</span>(new_b) &#123;&#125;</span><br><span class="line">    <span class="built_in">Complex</span>(<span class="type">const</span> Complex&lt;T&gt; &amp;cur): <span class="built_in">a</span>(cur.a), <span class="built_in">b</span>(cur.b) &#123;&#125;</span><br><span class="line">    <span class="keyword">friend</span> Complex&lt;T&gt; <span class="keyword">operator</span> - (Complex&lt;T&gt; z1, Complex&lt;T&gt; z2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Complex</span>(z1.a - z2.a, z1.b - z2.b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">friend</span> Complex&lt;T&gt; <span class="keyword">operator</span> + (Complex&lt;T&gt; z1, Complex&lt;T&gt; z2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Complex</span>(z1.a + z2.a, z1.b + z2.b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">friend</span> Complex&lt;T&gt; <span class="keyword">operator</span> * (Complex&lt;T&gt; z1, Complex&lt;T&gt; z2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Complex</span>(z1.a * z2.a - z1.b * z2.b, z1.b * z2.a + z1.a * z2.b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">T <span class="title">real</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> a; &#125;</span><br><span class="line">    <span class="function">T <span class="title">imag</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> b; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">real</span><span class="params">(T cur)</span> </span>&#123; a = cur; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">imag</span><span class="params">(T cur)</span> </span>&#123; b = cur; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; cout &lt;&lt; a &lt;&lt; <span class="string">&quot; + &quot;</span> &lt;&lt; b &lt;&lt; <span class="string">&quot;i&quot;</span>; &#125;</span><br><span class="line">    <span class="keyword">typedef</span> basic_ostream&lt;<span class="type">char</span>&gt;&amp; type;</span><br><span class="line">    <span class="keyword">friend</span> type <span class="keyword">operator</span> &lt;&lt; (type &amp;out, Complex&lt;T&gt; z) &#123; z.<span class="built_in">print</span>(); <span class="keyword">return</span> out; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>主席树</strong> hjt.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">remainable_segment_tree</span> &#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        <span class="type">size_t</span> siz;</span><br><span class="line">        Node *ls, *rs;</span><br><span class="line">        <span class="type">int</span> id;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123; siz = ls-&gt;siz + rs-&gt;siz; &#125;</span><br><span class="line">        <span class="built_in">Node</span>(<span class="type">size_t</span> s, Node *ls, Node *rs, <span class="type">int</span> id): <span class="built_in">siz</span>(s), <span class="built_in">ls</span>(ls), <span class="built_in">rs</span>(rs), <span class="built_in">id</span>(id) &#123;&#125;</span><br><span class="line">    &#125; *null;</span><br><span class="line">    vector &lt;Node*&gt; root;</span><br><span class="line">    <span class="type">int</span> minv, maxv, p, tot_id;</span><br><span class="line">    <span class="type">size_t</span> v, rk;</span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> mid ((l + r) &gt;&gt; 1)</span></span><br><span class="line">    <span class="function">Node* <span class="title">refresh</span><span class="params">(Node *pre, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        Node *cur = <span class="keyword">new</span> <span class="built_in">Node</span>(pre-&gt;siz + v, pre-&gt;ls, pre-&gt;rs, ++tot_id);</span><br><span class="line">        <span class="keyword">if</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p &lt;= mid) cur-&gt;ls = <span class="built_in">refresh</span>(pre-&gt;ls, l, mid);</span><br><span class="line">            <span class="keyword">else</span>          cur-&gt;rs = <span class="built_in">refresh</span>(pre-&gt;rs, mid + <span class="number">1</span>, r);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(Node *pre, Node *cur, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l == r) &#123; <span class="keyword">return</span> l; &#125;</span><br><span class="line">        <span class="type">size_t</span> siz = cur-&gt;ls-&gt;siz - pre-&gt;ls-&gt;siz;</span><br><span class="line">        <span class="keyword">if</span> (siz &gt;= rk) &#123; <span class="keyword">return</span> <span class="built_in">query</span>(pre-&gt;ls, cur-&gt;ls, l, mid); &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; rk -= siz; <span class="keyword">return</span> <span class="built_in">query</span>(pre-&gt;rs, cur-&gt;rs, mid + <span class="number">1</span>, r); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#<span class="keyword">undef</span> mid</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">remainable_segment_tree</span>() &#123;</span><br><span class="line">        null = <span class="keyword">new</span> <span class="built_in">Node</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        null-&gt;ls = null-&gt;rs = null, null-&gt;siz = <span class="number">0</span>;</span><br><span class="line">        root.<span class="built_in">push_back</span>(null);</span><br><span class="line">        minv = maxv = tot_id = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getpos</span><span class="params">(<span class="type">size_t</span> pre, <span class="type">size_t</span> cur, <span class="type">size_t</span> rank)</span> </span>&#123;</span><br><span class="line">        rk = rank;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">query</span>(root[pre], root[cur], minv, maxv);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">size_t</span> pre, <span class="type">size_t</span> cur, <span class="type">int</span> pos, <span class="type">size_t</span> val)</span> </span>&#123; <span class="comment">// create a new version</span></span><br><span class="line">        <span class="keyword">if</span> (cur == root.<span class="built_in">size</span>()) root.<span class="built_in">push_back</span>(null);</span><br><span class="line">        v = val, p = pos;</span><br><span class="line">        root[cur] = <span class="built_in">refresh</span>(root[pre], minv, maxv);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">set_limit</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123; <span class="comment">// remember to set it !!!!!!</span></span><br><span class="line">        <span class="keyword">if</span> (root.<span class="built_in">size</span>() &lt;= <span class="number">1</span>) minv = l, maxv = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">move</span><span class="params">(<span class="type">size_t</span> dest, <span class="type">size_t</span> source)</span> </span>&#123;</span><br><span class="line">        root[dest] = root[source];</span><br><span class="line">    &#125;</span><br><span class="line">&#125; tree;</span><br></pre></td></tr></table></figure>
+<p><strong>KD-tree</strong> kdt.h</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line">/* 区间加减修改，单点查询 K-D tree，维护了历史最小值</span><br><span class="line"> * usage:</span><br><span class="line"> * kdt::kd_tree&lt;2&gt; tree;</span><br><span class="line"> * kdt::kd_tree&lt;2&gt;::kd_val x[MAXN];</span><br><span class="line"> * for (int i = 1; i &lt;= n; i++) x[i].pos = &#123;%d, %d&#125;, x[i].val = %d;</span><br><span class="line"> * tree.init(x + 1, x + n + 1);</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">namespace kdt &#123;</span><br><span class="line"></span><br><span class="line">constexpr int inf = 0x3f3f3f3f;</span><br><span class="line"></span><br><span class="line">using array = initializer_list&lt;int&gt;;</span><br><span class="line"></span><br><span class="line">template&lt;class T&gt; bool chkmax(T &amp;a, const T b) &#123; return b &gt; a ? (a = b, 1) : 0; &#125;</span><br><span class="line">template&lt;class T&gt; bool chkmin(T &amp;a, const T b) &#123; return b &lt; a ? (a = b, 1) : 0; &#125;</span><br><span class="line"></span><br><span class="line">template &lt;const int d_size&gt;</span><br><span class="line">struct kd_tree &#123;</span><br><span class="line"></span><br><span class="line">    struct kd_pos &#123;</span><br><span class="line">        int pos[d_size];</span><br><span class="line">        int  operator [] (const int x) const &#123; return pos[x]; &#125;</span><br><span class="line">        int &amp;operator [] (const int x) &#123; return pos[x]; &#125;</span><br><span class="line">        inline bool operator == (const kd_pos &amp;v) const &#123;</span><br><span class="line">            for (int i = 0; i &lt; d_size; i++) if (v.pos[i] != pos[i]) return 0;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        inline bool operator &lt;= (const kd_pos &amp;v) const &#123;</span><br><span class="line">            for (int i = 0; i &lt; d_size; i++) if (pos[i] &gt; v.pos[i]) return 0;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        kd_pos(array a) &#123; int j = 0; for (auto i : a) &#123; pos[j++] = i; &#125; &#125;</span><br><span class="line">        kd_pos(int x) &#123; for (int i = 0; i &lt; d_size; i++) pos[i] = x; &#125;</span><br><span class="line">        kd_pos() : kd_pos(0) &#123;&#125;</span><br><span class="line">        void print() &#123; debugf(&quot;&#123;%lld, %lld&#125;&quot;, pos[0], pos[1]); &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    struct kd_val &#123;</span><br><span class="line">        kd_pos pos;</span><br><span class="line">        int val;</span><br><span class="line">        int &amp;operator [] (const int x) &#123; return pos[x]; &#125;</span><br><span class="line">        kd_val() : pos(), val(0) &#123;&#125;</span><br><span class="line">        kd_val(array pos, int val) : pos(pos), val(val) &#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    int tot_id; // for debug</span><br><span class="line">    struct kd_node &#123;</span><br><span class="line">        int id; // for debug</span><br><span class="line">        kd_pos min, max, pos;</span><br><span class="line">        int tag, val;</span><br><span class="line">        int mintag, minv;</span><br><span class="line">        kd_node *ls, *rs;</span><br><span class="line">        kd_node() : min(inf), max(-inf), tag(0) &#123;&#125;</span><br><span class="line">    &#125; empty, *null;</span><br><span class="line">    void info(kd_node* p) &#123;</span><br><span class="line">        debugf(&quot;node #%lld (%lld, %lld) &#123;\n&quot;</span><br><span class="line">                &quot;    range (%lld, %lld) ==&gt; (%lld, %lld)\n&quot;</span><br><span class="line">                &quot;    son: #%lld, #%lld\n&quot;</span><br><span class="line">                &quot;    minv = %lld, mintag = %lld\n&quot;</span><br><span class="line">                &quot;    curval = %lld, curtag = %lld\n&quot;</span><br><span class="line">                &quot;&#125;\n&quot;,</span><br><span class="line">                p-&gt;id, p-&gt;pos[0], p-&gt;pos[1],</span><br><span class="line">                p-&gt;min[0], p-&gt;min[1], p-&gt;max[0], p-&gt;max[1],</span><br><span class="line">                p-&gt;ls-&gt;id, p-&gt;rs-&gt;id,</span><br><span class="line">                p-&gt;minv, p-&gt;mintag, p-&gt;val, p-&gt;tag</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    inline kd_node* new_node() &#123;</span><br><span class="line">        kd_node* cur = new kd_node;</span><br><span class="line">        cur-&gt;ls = cur-&gt;rs = null;</span><br><span class="line">        cur-&gt;id = ++tot_id;</span><br><span class="line">        return cur;</span><br><span class="line">    &#125;</span><br><span class="line">    inline void add(kd_node *p, int tag, int mintag) &#123;</span><br><span class="line">        if (p == null) return;</span><br><span class="line">        chkmin(p-&gt;minv, p-&gt;val + mintag);</span><br><span class="line">        chkmin(p-&gt;mintag, p-&gt;tag + mintag);</span><br><span class="line">        p-&gt;tag += tag;</span><br><span class="line">        p-&gt;val += tag;</span><br><span class="line">    &#125;</span><br><span class="line">    inline void pushup(kd_node *p) &#123;</span><br><span class="line">        for (int i = 0; i &lt; d_size; i++) &#123;</span><br><span class="line">            chkmin(p-&gt;min[i], min(p-&gt;ls-&gt;min[i], p-&gt;rs-&gt;min[i]));</span><br><span class="line">            chkmax(p-&gt;max[i], max(p-&gt;ls-&gt;max[i], p-&gt;rs-&gt;max[i]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    inline void pushdown(kd_node *p) &#123;</span><br><span class="line">        add(p-&gt;ls, p-&gt;tag, p-&gt;mintag), add(p-&gt;rs, p-&gt;tag, p-&gt;mintag);</span><br><span class="line">        p-&gt;mintag = p-&gt;tag = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    kd_node* build(kd_val a[], int l, int r, int d) &#123;</span><br><span class="line">        int mid = (l + r) &gt;&gt; 1;</span><br><span class="line">        nth_element(a + l, a + mid, a + r + 1, [d] (kd_val a, kd_val b) &#123;return a[d] &lt; b[d];&#125;);</span><br><span class="line">        kd_node* cur = new_node();</span><br><span class="line">        cur-&gt;pos = cur-&gt;min = cur-&gt;max = a[mid].pos;</span><br><span class="line">        cur-&gt;val = cur-&gt;minv = a[mid].val;</span><br><span class="line">        if (l &lt; mid) cur-&gt;ls = build(a, l, mid - 1, (d + 1) % d_size);</span><br><span class="line">        if (mid &lt; r) cur-&gt;rs = build(a, mid + 1, r, (d + 1) % d_size);</span><br><span class="line">        pushup(cur);</span><br><span class="line">        return cur;</span><br><span class="line">    &#125;</span><br><span class="line">    void modify(kd_node *p, const kd_pos &amp;min, const kd_pos &amp;max, int v) &#123;</span><br><span class="line">        if (((int)(p-&gt;min &lt;= max) + (int)(min &lt;= p-&gt;max)) != 2) return;</span><br><span class="line">        if (min &lt;= p-&gt;min &amp;&amp; p-&gt;max &lt;= max) &#123; add(p, v, v); return; &#125;</span><br><span class="line">        pushdown(p);</span><br><span class="line">        if (min &lt;= p-&gt;pos &amp;&amp; p-&gt;pos &lt;= max) &#123; p-&gt;val += v, chkmin(p-&gt;minv, p-&gt;val);&#125;</span><br><span class="line">        modify(p-&gt;ls, min, max, v), modify(p-&gt;rs, min, max, v);</span><br><span class="line">    &#125;</span><br><span class="line">    int query(kd_node *p, const kd_pos &amp;pos, int d = 0) &#123;</span><br><span class="line">        if ((p-&gt;min &lt;= pos || pos &lt;= p-&gt;max) == 0) return 0;</span><br><span class="line">        if (p-&gt;pos == pos) return p-&gt;minv;</span><br><span class="line">        pushdown(p);</span><br><span class="line">        int res = 0;</span><br><span class="line">        if (pos &lt;= p-&gt;ls-&gt;max &amp;&amp; pos[d] &lt;= p-&gt;pos[d])</span><br><span class="line">            res = query(p-&gt;ls, pos, (d + 1) % d_size);</span><br><span class="line">        if (res == 0)</span><br><span class="line">            res = query(p-&gt;rs, pos, (d + 1) % d_size);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    void print(kd_node* p, int depth = 0) &#123;</span><br><span class="line">        info(p);</span><br><span class="line">        if (p-&gt;ls != null) print(p-&gt;ls);</span><br><span class="line">        if (p-&gt;rs != null) print(p-&gt;rs);</span><br><span class="line">    &#125;</span><br><span class="line">    kd_node* init(kd_val* st, kd_val* ed) &#123;</span><br><span class="line">        return build(st, 0, ed - st - 1, 0);</span><br><span class="line">    &#125;</span><br><span class="line">    kd_tree() &#123; null = &amp;empty; null-&gt;ls = null-&gt;rs = null; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag"># 模板</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/23/exam-20210222/" rel="prev" title="20210222 考试总结">
+      <i class="fa fa-chevron-left"></i> 20210222 考试总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/24/geometry-inverse/" rel="next" title="圆反演变换">
+      圆反演变换 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hydropek</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hydropek</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
+
+  
+
+</body>
+</html>
