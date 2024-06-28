@@ -24,7 +24,7 @@ export var tutorial = {
 （即键盘上三排从左到右每排七个音分别对应do至si）
 默认在按键抬起时制音，
 在按住Shift时按键可以达到延音效果。
-也可以打开大写锁定一直延音，然后按空格换踏板。
+也可以打开大写锁定一直延音，然后点按Shift换踏板。
 
 全局力度调整：按下键盘加号/减号使力度调高/低一档
 
@@ -989,6 +989,7 @@ XNS FHW BSG JWJ/
 >>
 ^
 QWT QWT QWT QWT/
+QWT QWT QWT QWT/ QWT QWT QWT QWT/
 QWT QWT QWT QWT/ QWT QWT QWT QWT/
 QWT QWT QWT QWT/ QWT QWT QWT QWT/
 QWT QWT QWT QWT/ QWT QWT QWT QWT/
