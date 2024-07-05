@@ -4113,6 +4113,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <p>好怪哦</p>
 <p>弄了半天不知道怎么回事，最后问了问群里大佬，原来是这个 Xcode CommandLine Tools 提供的 python 会根据传入的程序名称决定行为，<code>argv[0]</code> 是 python 就当 python2 执行</p>
 <p>软链接没问题，文件确实是一样的</p>
+<img src="/2024/07/05/xcode-python-environment-and-soft-link/python-crc.png" class="" title="python crc">
 <p>换个名字就执行不了了</p>
 <img src="/2024/07/05/xcode-python-environment-and-soft-link/asd.png" class="" title="asd.png">
 <p>其实我应该自己早点发现这个问题的，之前刷知乎刷到过 clang/clang++ 也是一样的原理，共用一个执行文件，根据传入的 <code>$0</code> 决定是否链接 libc++ 库等</p>
