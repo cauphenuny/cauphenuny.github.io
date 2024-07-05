@@ -4109,7 +4109,20 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
     <content><![CDATA[<p>最近觉得终端里面输 <code>python</code> 出来的竟然是 python2 很不爽，然后就想用个软链接把 <code>/usr/local/bin/python</code> 指到 <code>/usr/local/bin/python3</code>。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo <span class="built_in">ln</span> -s /usr/local/bin/python3 /usr/local/bin/python</span><br></pre></td></tr></table></figure>
 <p>完事，然后：</p>
-<img src="/2024/07/05/xcode-python-environment-and-soft-link/01.png" class="" title="test">
+<img src="/2024/07/05/xcode-python-environment-and-soft-link/02.png" class="" title="02.png">
+<p>boom!</p>
+<p>省流：</p>
+<img src="/2024/07/05/xcode-python-environment-and-soft-link/01.png" class="" title="01.png">
+<p>好怪哦</p>
+<p>弄了半天不知道怎么回事，最后问了问群里大佬，原来是这个 Xcode CommandLine Tools 提供的 python 会根据传入的程序名称决定行为，<code>argv[0]</code> 是 python 就当 python2 执行</p>
+<p>软链接没问题，文件确实是一样的</p>
+<img src="/2024/07/05/xcode-python-environment-and-soft-link/04.png" class="" title="04.png">
+<p>换个名字就执行不了了</p>
+<img src="/2024/07/05/xcode-python-environment-and-soft-link/asd.png" class="" title="asd.png">
+<p>其实我应该自己早点发现这个问题的，之前刷知乎刷到过 clang/clang++ 也是一样的原理，共用一个执行文件，根据传入的 <code>$0</code> 决定是否链接 libc++ 库等</p>
+<img src="/2024/07/05/xcode-python-environment-and-soft-link/03.png" class="" title="03.png">
+<p>还是没想到这里去</p>
+<p>最后还是用了个 <code>alias</code> ，不折腾软链接了</p>
 ]]></content>
       <categories>
         <category>CS</category>
