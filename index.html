@@ -202,7 +202,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/07/05/xcode-python-environment-and-soft-link/" class="post-title-link" itemprop="url">Xcode 一个有意思的机制 / 手搓 brew-clang 启动器</a>
+            <a href="/2024/07/05/xcode-python-environment-and-soft-link/" class="post-title-link" itemprop="url">Xcode 一个有意思的机制 / 小型 brew-clang 启动器</a>
         </h2>
 
         <div class="post-meta">
@@ -213,7 +213,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-07-05 17:49:27 / 修改时间：20:06:21" itemprop="dateCreated datePublished" datetime="2024-07-05T17:49:27+08:00">2024-07-05</time>
+              <time title="创建时间：2024-07-05 17:49:27 / 修改时间：21:07:18" itemprop="dateCreated datePublished" datetime="2024-07-05T17:49:27+08:00">2024-07-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,7 +240,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近觉得终端里面输 <code>python</code> 出来的竟然是 python2 很不爽，然后就想用个软链接把 <code>/usr/local/bin/python</code> 指到 <code>/usr/local/bin/python3</code>。</p>
+          <p>最近觉得终端里面输 <code>python</code> 出来的竟然是 python2 很不爽，然后就想用个软链接把 /usr/local/bin/python 指到 /usr/local/bin/python3。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="built_in">ln</span> -s /usr/local/bin/python3 /usr/local/bin/python</span><br></pre></td></tr></table></figure>
 <p>完事，然后：</p>
 <img src="/2024/07/05/xcode-python-environment-and-soft-link/01.png" class title="01.png">
