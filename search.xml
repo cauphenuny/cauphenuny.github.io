@@ -4113,14 +4113,14 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <p>好怪哦</p>
 <p>弄了半天不知道怎么回事，最后问了问群里大佬，原来是这个 Xcode CommandLine Tools 提供的 python 会根据传入的程序名称决定行为，<code>argv[0]</code> 是 python 就当 python2 执行</p>
 <p>软链接没问题，文件确实是一样的</p>
-<img src="/2024/07/05/xcode-python-environment-and-soft-link/python-crc.png" class="" title="python-crc">
 <p>换个名字就执行不了了</p>
 <img src="/2024/07/05/xcode-python-environment-and-soft-link/asd.png" class="" title="asd.png">
 <p>其实我应该自己早点发现这个问题的，之前刷知乎刷到过 clang/clang++ 也是一样的原理，共用一个执行文件，根据传入的 <code>$0</code> 决定是否链接 libc++ 库等</p>
-<img src="/2024/07/05/xcode-python-environment-and-soft-link/clang-crc.png" class="" title="clang crc">
+<img src="/2024/07/05/xcode-python-environment-and-soft-link/clang-crc.png" class="" title="apple clang">
+<img src="/2024/07/05/xcode-python-environment-and-soft-link/brew-clang-crc.png" class="" title="brew clang">
 <p>还是没想到这里去</p>
 <hr />
-<p>最后还是用了个 <code>alias</code> ，不折腾软链接了</p>
+<p>最后用了个 <code>alias</code> ，不折腾软链接了</p>
 <p>等等……</p>
 <img src="/2024/07/05/xcode-python-environment-and-soft-link/both-crc.png" class="" title="crc对比">
 <p>啊？</p>
@@ -4128,7 +4128,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <hr />
 <p>利用类似的原理，写了个 brew-clang 启动器</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env zsh</span></span><br><span class="line"></span><br><span class="line">prefix=<span class="string">&quot;/opt/homebrew/Cellar/llvm&quot;</span></span><br><span class="line">ver=($(<span class="built_in">ls</span> -vr <span class="variable">$prefix</span>))</span><br><span class="line"><span class="built_in">dir</span>=<span class="string">&quot;<span class="variable">$prefix</span>/<span class="variable">$&#123;ver[1]&#125;</span>/bin/&quot;</span></span><br><span class="line"><span class="comment"># 运行 llvm/(version)/bin/ 目录下的同名程序</span></span><br><span class="line"><span class="variable">$dir</span>/$(<span class="built_in">basename</span> <span class="variable">$0</span>) <span class="variable">$argv</span></span><br></pre></td></tr></table></figure>
-<p>将这个脚本保存为你喜欢的名字，再创建一些链接命名为想要导出的命令即可</p>
+<p>将这个脚本随便保存个名字，再创建一些链接命名为想要导出的命令即可</p>
 <p>使用效果：</p>
 <img src="/2024/07/05/xcode-python-environment-and-soft-link/brew-llvm.png" class="" title="使用效果">
 ]]></content>
