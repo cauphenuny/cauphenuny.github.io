@@ -4153,7 +4153,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
   <entry>
     <title>d2l 学习笔记</title>
     <url>/2024/07/20/deeplearning-notes/</url>
-    <content><![CDATA[<h1 id="环境搭建"><a class="markdownIt-Anchor" href="#环境搭建"></a> 环境搭建</h1>
+    <content><![CDATA[<h2 id="环境搭建"><a class="markdownIt-Anchor" href="#环境搭建"></a> 环境搭建</h2>
 <p>装 d2l==0.17.6 的时候 pandas build wheel 失败了，查了一下应该是<a href="https://github.com/pandas-dev/pandas/issues/59038">这个原因</a>。</p>
 <p>没怎么细看，因为用高点的 python 版本直接 <code>pip install d2l</code> 就成功了</p>
 ]]></content>
