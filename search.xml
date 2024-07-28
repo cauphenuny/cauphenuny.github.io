@@ -4156,6 +4156,15 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
     <content><![CDATA[<h2 id="环境搭建"><a class="markdownIt-Anchor" href="#环境搭建"></a> 环境搭建</h2>
 <p>装 d2l==0.17.6 的时候 pandas build wheel 失败了，查了一下应该是<a href="https://github.com/pandas-dev/pandas/issues/59038">这个原因</a>。</p>
 <p>没怎么细看，因为用高点的 python 版本直接 <code>pip install d2l</code> 就成功了</p>
+<h2 id="数据预处理"><a class="markdownIt-Anchor" href="#数据预处理"></a> 数据预处理</h2>
+<p>(chapter 2.2)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data = pd.read_csv(data_file)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   NumRooms Alley   Price</span><br><span class="line">0       NaN  Pave  127500</span><br><span class="line">1       2.0   NaN  106000</span><br><span class="line">2       4.0   NaN  178100</span><br><span class="line">3       NaN   NaN  140000</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">inputs, outputs = data.iloc[:, <span class="number">0</span>:<span class="number">2</span>], data.iloc[:, <span class="number">2</span>]</span><br><span class="line">inputs = inputs.fillna(inputs.mean())</span><br><span class="line"><span class="built_in">print</span>(inputs)</span><br></pre></td></tr></table></figure>
+<p>报错：<code>TypeError: can only concatenate str (not &quot;int&quot;) to str</code></p>
+<p>原因：<code>pandas.DataFrame.mean</code> api 变了，得加个<code>numeric_only=True</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> <code>inputs = inputs.fillna(inputs.mean(numeric_only=True))</code></p>
+<p>下面的 <code>pd.get_dummies</code> api 也改了，要多加上 <code>dtype=int</code> 不然生成的是 True/False.</p>
+<p>reference: <a href="https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html">docs</a></p>
 ]]></content>
       <categories>
         <category>CS</category>
