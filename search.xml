@@ -2212,30 +2212,6 @@ y_2 = y_0 + \frac{|OB|}{|OA|} (y_1 - y_0)
       </tags>
   </entry>
   <entry>
-    <title>git 回滚</title>
-    <url>/2021/03/30/git-roll-back/</url>
-    <content><![CDATA[<p>git 还是很方便的</p>
-<ol>
-<li>
-<p><code>git log</code> 查看提交信息</p>
-<img src="/2021/03/30/git-roll-back/01.png" class="">
-</li>
-<li>
-<p><code>git reset --hard ...</code> 回退版本</p>
-<img src="/2021/03/30/git-roll-back/02.png" class="">
-</li>
-<li>
-<p><code>git push origin HEAD --force</code> 推送到远端（其实不建议用这种方法）</p>
-<img src="/2021/03/30/git-roll-back/05.png" class="">
-</li>
-<li>
-<p><code>git reflog</code> 查看命令历史（可以用来撤销回滚）</p>
-<img src="/2021/03/30/git-roll-back/04.png" class="">
-</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>拉格朗日插值</title>
     <url>/2020/10/23/lagrange/</url>
     <content><![CDATA[<p><a href="https://oi-wiki.org/math/poly/lagrange/">oi-wiki</a></p>
