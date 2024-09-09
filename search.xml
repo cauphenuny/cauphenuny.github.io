@@ -4137,7 +4137,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <p>完事，然后：</p>
 <img src="/2024/07/05/xcode-python-environment-and-soft-link/01.png" class="" title="01.png">
 <p>好怪哦</p>
-<p>弄了半天不知道怎么回事，最后问了问群里大佬，原来是这个 Xcode CommandLine Tools 提供的 python 会根据传入的程序名称决定行为，argv[0] 是 python 就当 python2 执行</p>
+<p>弄了半天不知道怎么回事，最后群里问了问，有大佬解释是这个 Xcode CommandLine Tools 提供的 python 会根据传入的程序名称决定行为，argv[0] 是 python 就当 python2 执行</p>
 <p>软链接没问题，文件确实是一样的</p>
 <img src="/2024/07/05/xcode-python-environment-and-soft-link/python-crc.png" class="" title="python crc">
 <p>换个名字就执行不了了</p>
@@ -4149,7 +4149,6 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <hr />
 <p><s>最后用了个 alias ，不折腾软链接了</s></p>
 <p>最后还是用上了 conda 管理环境，删掉了 <code>/usr/local/bin</code> 里面的python/pip等。</p>
-<p>已老实，求放过。</p>
 <p>等等……</p>
 <img src="/2024/07/05/xcode-python-environment-and-soft-link/both-crc.png" class="" title="crc对比">
 <p>啊？</p>
