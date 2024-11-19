@@ -1,0 +1,106 @@
+input[type='number']{
+    width: 3em;
+}
+#song-name{
+    font-size: 1.0em;
+    width: 10em;
+}
+@font-face {
+  font-family: 'ConsolasHybrid';
+  src: url('./fonts/Consolas-Hybrid.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'HYWenHei';
+  src: url('./fonts/HYWenHei-65W-3.ttf') format('truetype');
+}
+textarea {
+  font-family: ConsolasHybrid, Consolas, Monospace;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 1.0em;
+  border-radius: 10px;
+}
+sup {
+    font-size: xx-small
+}
+img {
+}
+h1{
+    text-align: center;
+}
+body {
+    /*font-family: 'HYWenHei',Arial,sans-serif;*/
+}
+select, input[type='number'], input[type='text'] {
+    padding: 0.1em;
+    border: 1px solid;
+    border-radius: 0.3em;
+    /*font-family: 'HYWenHei',Arial,sans-serif;*/
+}
+button, input[type='button'] {
+    /*font-family: 'HYWenHei',Arial,sans-serif;*/
+    background-color: #fff9ef;
+    border: 1px solid #000;
+    border-radius: 0.4em;
+    padding: 0.4em 0.8em;
+    /*
+    box-shadow: 3px 3px 4px rgba(0,0,0,0.4);
+    */
+    transition: filter 0.1s;
+}
+.vel-button {
+    padding: 0.1em 0.5em;
+    border-radius: 0.5em;
+}
+button:hover, input[type='button']:hover {
+    filter: brightness(0.9);
+}
+button:active, {
+    filter: brightness(0.7);
+}
+body{
+    background-image: url('./background/01.avif');
+    background-repeat: no-repeat; /* 背景图片不重复 */
+    background-size: cover; /* 背景图片覆盖整个页面 */
+    background-attachment: fixed; /* 背景固定，不滚动 */
+}
+body{
+    opacity: 0.8;
+}
+.image-container {
+    display: inline-flex;
+    align-items: center;
+}
+
+.keysgn-img{
+    height: 2.2em;
+    margin-right: 0.5em;
+}
+
+.container p span {
+    line-height: 1;
+}
+
+.container {
+    display: flex;
+}
+.displayer {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+}
+#preset-buttons {
+    line-height: 2.2em;
+    text-align: left;
+}
+#tape-input {/*
+    position: fixed;
+    right: 5%;
+    top: 12%;*/
+    display: flex;
+    text-align: center;
+    */
+}
+
+.game-start-btn {
+    background-color: #b3ecff;
+}

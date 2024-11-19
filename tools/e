@@ -1,0 +1,23 @@
+#!/bin/zsh
+
+file=""
+tempfile="/tmp/hexo_tempfile"
+if [ $# -gt 1 ]; then
+    if [ -f $hexo_path/$1 ]; then file="$hexo_path/$1";
+    elif [ -f $hexo_path/source/$1 ]; then file="$hexo_path/source/$1";
+    elif [ -f $hexo_path/source/$1.md ]; then file="$hexo_path/source/$1.md";
+    elif [ -f $hexo_path/source/_posts/$1 ]; then file="$hexo_path/source/_posts/$1";
+    elif [ -f $hexo_path/source/_posts/$1.md ]; then file="$hexo_path/source/_posts/$1.md";
+    elif [ -d $hexo_path/$1 ]; then file="$hexo_path/$1";
+    elif [ -d $hexo_path/source/$1 ]; then file="$hexo_path/source/$1";
+    else
+        echo -e "${fg[red]}no such file!${reset_color}"
+        exit 1
+    fi
+else
+    file=$hexo_path
+fi
+echo "code $file" &&
+code $file
+$hexo_path/source/tools/upload
+

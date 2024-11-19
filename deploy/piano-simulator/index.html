@@ -1,0 +1,178 @@
+<!DOCTYPE HTML> <html> <head>
+    <meta charset="UTF-8" >
+    <!--
+      - 一个能奏出曲子，并且达到了“好听”程度的钢琴模拟器
+      - 自制记谱方法
+      - 附带音游模式自制谱面可玩性极高
+    -->
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./keyboard.css">
+  </head>
+  <body>
+    <title>自制谱面音游 / 钢琴模拟器</title>
+    <h1>自制谱面音游 / 钢琴模拟器</h1>
+    <script>
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|QQ/i.test(navigator.userAgent);
+    }
+    if (isMobileDevice()) {
+        alert("请在电脑浏览器中打开");
+    }
+    </script>
+    <p><label for="input">使用键盘/鼠标模拟钢琴，在下框中输入谱子自动演奏：<br>
+    <b>输入谱子或加载预设的谱子后可进入音游模式游玩</b><br> </label></p>
+    <p id="status" style="color: red;"><b>加载中，请稍候，第一次加载时间可能较长……</b></p>
+    <hr>
+    <script type="module" src="songs.js"> </script>
+    <script type="module" src="index.js"> </script>
+    <script type="module" src="player.js"> </script>
+
+    <div class='container'>
+        <div id="tape-keyboard" style="flex: 1">
+            <div id="tape-input">
+                <div class="column">
+                    <p><label for="song-name">曲名：</label>
+                    <input type="text" id="song-name"></p>
+                    <label for="bpm">bpm：</label>
+                    <input type="number" id="bpm" size=10>
+                    <label for="time_sign1">拍号：</label>
+                    <input type="number" id="time_sign1" size=5 style="width: 3em">/<input type="number" id="time_sign2" size=5 style="width: 3em"> <br>
+                    <p>
+                      谱子/主音轨：<br>
+                      <textarea id="input" name="input" rows="8" style="width: 45em">加载中……</textarea>
+                    </p>
+                    <p>
+                      谱子/副音轨：<br>
+                      <textarea id="input2" name="input2" rows="4" style="width: 45em">加载中……</textarea>
+                    </p>
+                    <button id="start">播放</button> <button id="stop">停止</button> 
+                    <button id="gamestart2" class="game-start-btn">开始游戏</button> 
+                    <button id="gametutorial2">演示</button><br><br>
+                    <div id="keyboard" style="text-align: center;">
+                        <span class="kb-img-ctn"><img id="Q" class="kb-img" src="./keyboard/Q.png" alt="Q"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="W" class="kb-img" src="./keyboard/W.png" alt="W"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="E" class="kb-img" src="./keyboard/E.png" alt="E"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="R" class="kb-img" src="./keyboard/R.png" alt="R"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="T" class="kb-img" src="./keyboard/T.png" alt="T"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="Y" class="kb-img" src="./keyboard/Y.png" alt="Y"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="U" class="kb-img" src="./keyboard/U.png" alt="U"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <br>
+
+                        <span class="kb-img-ctn"><img id="A" class="kb-img" src="./keyboard/A.png" alt="A"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="S" class="kb-img" src="./keyboard/S.png" alt="S"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="D" class="kb-img" src="./keyboard/D.png" alt="D"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="F" class="kb-img" src="./keyboard/F.png" alt="F"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="G" class="kb-img" src="./keyboard/G.png" alt="G"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="H" class="kb-img" src="./keyboard/H.png" alt="H"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="J" class="kb-img" src="./keyboard/J.png" alt="J"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <br>
+
+                        <span class="kb-img-ctn"><img id="Z" class="kb-img" src="./keyboard/Z.png" alt="Z"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="X" class="kb-img" src="./keyboard/X.png" alt="X"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="C" class="kb-img" src="./keyboard/C.png" alt="C"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="V" class="kb-img" src="./keyboard/V.png" alt="V"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="B" class="kb-img" src="./keyboard/B.png" alt="B"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="N" class="kb-img" src="./keyboard/N.png" alt="N"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <span class="kb-img-ctn"><img id="M" class="kb-img" src="./keyboard/M.png" alt="M"><span class="hvinfo disable-when-loaded">加载中…</span></span>
+                        <br>
+
+                        <span class="kb-img-ctn"><img id="Pedal" class="pd-img" src="./keyboard/Pedal.png" alt="Pedal"><span class="hvinfo" id="pedal-hover">加载中…</span></span>
+                    </div>
+                </div>
+                <div class="column" style="padding: 2em">
+                    <div id="preset-buttons">
+                        <br>
+                        <p>
+                          <button id="tutorial" class="preset">教程：键位与记谱</button>
+                        </p>
+                          <button id="canon" class="preset">卡农</button> 
+                          <button id="haruhikage" class="preset">春日影</button> 
+                          <button id="sparkle" class="preset">火花 (スパークル)</button> <br>
+                          <button id="flowerdance" class="preset">Flower Dance</button>
+                          <button id="sykxmyas" class="preset">使一颗心免于哀伤</button> <br>
+                          <button id="bwv846" class="preset">巴赫 C 大调前奏曲</button> 
+                          <button id="sadmachine" class="preset">Sad Machine</button>
+                        </p>
+                        <p>
+                          <button id="init" class="preset">复原</button>
+                        </p>
+                    </div>
+                    <p style="text-align: left">
+                        更多谱子：<br>
+                        <a href="https://space.bilibili.com/76052941">@指尖灬旋律丿</a> <br>
+                        <a href="https://space.bilibili.com/79355209">@原琴玩家伊蕾娜</a> <br>
+                        <a href="https://space.bilibili.com/16948034">@呱呱能有什么坏心思</a><br>
+                        <a href="https://space.bilibili.com/12461094">@Deemo_25418</a> <br>
+                        把这几位up主的谱子复制过来，空格改成点，再校对一下节奏，就可以开始玩了
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="options" style="flex: 0.35">
+            <h2>音游选项</h2>
+            <p>
+                谱面根据主音轨自动创建，记得在左边输入谱子！<br><br>
+                音符下落速度：<input type="range" id="drop-slider" min="0.5" max="1.5" value="0.85" step="0.01"><br>
+                按键音效音量：<input type="range" id="volume-slider" min="0" max="100" value="50" step="0.01"><br>
+                判定延迟：<span id="delay-time">0</span>ms
+                <input type="range" id="delay-slider" min="0" max="150" value=0 onchange="update_value('delay-time', this.value)"><br>
+                （如果你使用蓝牙耳机，建议适当调大判定延迟）<br><br>
+                选择难度：<select id="difficulty-select">
+                    <option value="easy">简单 | 4键、音符最少</option>
+                    <option value="semi-easy">较简单 | 4键、音符较少</option>
+                    <option value="normal">普通 | 6键、音符较少</option>
+                    <option value="semi-hard">较困难 | 6键、音符较多</option>
+                    <option value="hard">困难 | 6键、音符最多</option>
+                </select></span><br>
+                <script>
+                function update_value(name, value) {
+                    document.getElementById(name).innerText = value;
+                }
+                </script>
+            </p>
+            <button id="gamestart" class="game-start-btn">开始！</button> 
+            <button id="gametutorial">演示模式</button><br><br>
+            <hr>
+            <h2>钢琴选项</h2>
+            <div class="image-container">
+              <form onsubmit="return false">
+                <p>
+                <span id="vel">力度：</span>&nbsp;&nbsp;<button id="vel-add" class="vel-button">+</button>&nbsp;<button id="vel-minus" class="vel-button">-</button><br><br>
+                移调：
+                <select id="offset_option">
+                  <option value="flex">整体升降key数（简谱）</option>
+                  <option value="fixed">升降号个数（五线谱）</option>
+                </select>
+                <input type="number" id="key_offset" size=5>&nbsp;<span id="key_name"></span><br>
+                </p>
+                <input type="button" value="确定" id="submit"> 
+                <input type="button" value="复原" id="reset-environment">
+              </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p>
+    感谢：<br>
+    https://w3schools.com/<br>
+    ChatGPT<br>
+    网上的各种资料、博客<br>
+    按钮图片来自原神 <br>
+    感谢 wlf 同学告诉我如何在网页中加徽章<br>
+    感谢很多同学在测试时给我提的意见<br>
+    字体：<a href="https://github.com/yakumioto/YaHei-Consolas-Hybrid-1.12">YaHei Consolas Hybrid 1.12</a>、<a href="https://www.fonts.net.cn/font-32635283155.html">汉仪文黑</a><br>
+    钢琴、鼓组音源来自<a href="https://www.npmjs.com/package/smplr">smplr</a>库<br>
+    背景来自 unsplash.com 和 pixiv.net<br>
+    其他素材、动画均为手搓
+    </p>
+    <hr>
+    当前版本 v1.10.1， <a href="https://cauphenuny.github.io/2024/06/14/build-a-windsonglyre-simulator/">开发日志</a>
+    <br>
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcauphenuny.github.io%2Fdeploy%2Fpiano-simulator&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Hits&edge_flat=false"/></a>
+    <a  href="https://github.com/cauphenuny/diy-rhythm-game">
+    <img alt="Github Repo" src="https://img.shields.io/badge/Repo-cauphenuny%2Fdiy--rhythm--game-blue?logo=github">
+    </a> 
+</body>
+
+</html>

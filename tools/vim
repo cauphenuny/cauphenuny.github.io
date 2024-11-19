@@ -1,0 +1,22 @@
+#!/bin/zsh
+target=""
+temp="/tmp/hexo_tempfile"
+if [ -f $hexo_path/$1 ]; then file="$hexo_path/$1";
+elif [ -f $hexo_path/source/$1 ]; then file="$hexo_path/source/$1";
+elif [ -f $hexo_path/source/$1.md ]; then file="$hexo_path/source/$1.md";
+elif [ -f $hexo_path/source/_posts/$1 ]; then file="$hexo_path/source/_posts/$1";
+elif [ -f $hexo_path/source/_posts/$1.md ]; then file="$hexo_path/source/_posts/$1.md";
+else
+    echo -e "${fg[red]}no such file!${reset_color}"
+    exit 1
+fi
+target=$file
+cp "$target" "$temp" && vim $target
+if ! diff "$target" "$temp"; then
+    echo -ne "\nrelease? [y/n] "
+    read a
+    if ! [ "$a" = "y" ]; then return 0; fi
+    echo -e "${fg[green]}releasing...${reset_color}"
+    sleep 1
+    $hexo_path/source/tools/release
+fi
