@@ -1,0 +1,50 @@
+---
+title: BSGS
+mathjax: true
+date: 2020-11-01 19:02:29
+tags: [数学,数论,BSGS]
+categories: [oi,学习笔记,数学,数论]
+---
+求解满足 $a^x\equiv b\pmod p$ 的最小 $x$  （ $p$ 是质数）
+
+<!-- more -->
+
+分块？设分块大小为 $t$ 
+
+考虑 $i\in[0,\left\lceil\dfrac{n}{t}\right\rceil],j\in[1,t]$ 则 $a^x$ 可以表示成 $a^{it-j}$
+$$
+a^{it-j}\equiv b\pmod p
+$$
+转换一下
+$$
+a^{it}\equiv ba^j\pmod p
+$$
+预处理出所有的 $ba^j$ 存到一个 `map` / `unordered_map` 中，在枚举 `i in range[1, n/t]` 判断 $a^{it}$ 是否和某个元素 $ba^j$ 相等，答案即为 $it-j$
+
+复杂度 $O(t+\left\lceil\dfrac{n}{t}\right\rceil)$ ，当 $t$ 取 $\sqrt{n}$ 时 复杂度 $O(\sqrt n)$
+
+----
+
+#### exBSGS
+
+求解满足 $a^x\equiv b\pmod p$ 的最小 $x$  （$a$ 与 $p$ 可能不互质）
+
+想办法使 $a\perp p$ 
+
+设 $d_1=\gcd(a,p)$ ，若 $d_1\nmid b$ 则原方程无解（裴蜀定理），否则方程变为$\dfrac{a}{d_1}\cdot a^{x-1}\equiv\dfrac{b}{d_1}\pmod {\dfrac{p}{d_1}}$
+
+一直除，直到 $a\perp \frac{p}{d_1d_2d_3...d_k}$ 。
+
+记 $D=\prod\limits_{i=1}^kd_i$ 
+$$
+\dfrac{a^k}{D}\cdot a^{x-k}\equiv \dfrac bD\pmod{\dfrac pD}
+$$
+即
+$$
+a^{x-k}\equiv \dfrac bD\cdot \left(\dfrac{a^k}{D}\right)^{-1}\pmod{\dfrac pD}
+$$
+用 BSGS 求就是了（记得答案加上 $k$）
+
+不排除答案小于 $k$ ，所以在构造 $a\perp p$ 时记得判断一下当前的 $\prod\limits_{i=1}^{k'}d_i$ 是否等于当前的 $b /\prod\limits_{i=1}^{k'}d_i$ ，相等的话答案就是 $k'$
+
+---
