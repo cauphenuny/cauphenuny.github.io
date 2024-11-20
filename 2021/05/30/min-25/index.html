@@ -1,317 +1,169 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"cauphenuny.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="zxy 讲题的时候顺便讲了一下 min-25 筛可以解决一种函数前缀和，">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>min-25 筛 | Cauphenuny's Blog</title><meta name="author" content="cauphenuny"><meta name="copyright" content="cauphenuny"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="zxy 讲题的时候顺便讲了一下 min-25 筛可以解决一种函数前缀和，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="min-25 筛">
 <meta property="og:url" content="https://cauphenuny.github.io/2021/05/30/min-25/index.html">
 <meta property="og:site_name" content="Cauphenuny&#39;s Blog">
 <meta property="og:description" content="zxy 讲题的时候顺便讲了一下 min-25 筛可以解决一种函数前缀和，">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cauphenuny.github.io/image/avatar.jpg">
 <meta property="article:published_time" content="2021-05-30T00:38:58.000Z">
 <meta property="article:modified_time" content="2023-08-02T15:38:28.000Z">
 <meta property="article:author" content="cauphenuny">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cauphenuny.github.io/image/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://cauphenuny.github.io/2021/05/30/min-25/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-
-<link rel="canonical" href="https://cauphenuny.github.io/2021/05/30/min-25/">
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cauphenuny.github.io/2021/05/30/min-25/","path":"2021/05/30/min-25/","title":"min-25 筛"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>min-25 筛 | Cauphenuny's Blog</title>
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-<!-- hexo injector head_end start -->
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'min-25 筛',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">Cauphenuny's Blog</p>
-      <i class="logo-line"></i>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
-  </ul>
-</nav>
-
-
-
-
-</header>
-        
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">cauphenuny</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">64</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">27</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">71</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-        </div>
-      </div>
-    </div>
-
-    
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cauphenuny.github.io/2021/05/30/min-25/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="cauphenuny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cauphenuny's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="min-25 筛 | Cauphenuny's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          min-25 筛
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-30 08:38:58" itemprop="dateCreated datePublished" datetime="2021-05-30T08:38:58+08:00">2021-05-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-02 23:38:28" itemprop="dateModified" datetime="2023-08-02T23:38:28+08:00">2023-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody"><p>zxy 讲题的时候顺便讲了一下</p>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/image/cover/4.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent;"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Cauphenuny's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">min-25 筛</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">min-25 筛</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-30T00:38:58.000Z" title="发表于 2021-05-30 08:38:58">2021-05-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-02T15:38:28.000Z" title="更新于 2023-08-02 23:38:28">2023-08-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/oi/">oi</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2023-08-02 23:38:28&quot;}" hidden></div><p>zxy 讲题的时候顺便讲了一下</p>
 <p>min-25 筛可以解决一种函数前缀和，</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://cauphenuny.github.io">cauphenuny</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://cauphenuny.github.io/2021/05/30/min-25/">https://cauphenuny.github.io/2021/05/30/min-25/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://cauphenuny.github.io" target="_blank">Cauphenuny's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></div><div class="post-share"><div class="social-share" data-image="/image/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/08/09/cs-dialect-transliteration/" title="长沙话拼音方案"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">长沙话拼音方案</div></div><div class="info-2"><div class="info-item-1"> 声母    音标 拼音 例字     ∅ ∅ 移   p b 皮   pʰ p 披   t d 低   tʰ t 梯   k g 家   kʰ k 掐   m m 米   ȵ nj 宜   ŋ ng 牙   l l 拿   f f 花   x h 瞎   z r 日   ts z 支   tsʰ c 匙   s s 施   tɕ zj 饥   tɕʰ cj 欺   ɕ sj 西    ...</div></div></div></a><a class="pagination-related" href="/2021/05/29/mobius/" title="莫比乌斯反演"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">莫比乌斯反演</div></div><div class="info-2"><div class="info-item-1">本来是考试的，但是数论忘了，只好滚去学数论。  性质 若 f(x)f(x)f(x) 和 g(x)g(x)g(x) 均为积性函数，则以下函数也为积性函数： h(x)=f(xp)h(x)=fp(x)h(x)=f(x)g(x)h(x)=∑d∣xf(d)g(xd)\begin{aligned} h(x)&amp;=f(x^p)\\ h(x)&amp;=f^p(x)\\ h(x)&amp;=f(x)g(x)\\ h(x)&amp;=\sum_{d\mid x}f(d)g(\frac{x}{d}) \end{aligned} h(x)h(x)h(x)h(x)​=f(xp)=fp(x)=f(x)g(x)=d∣x∑​f(d)g(dx​)​ 设 x=∏pikix=\prod p_i^{k_i}x=∏piki​​ 若 F(x)F(x)F(x) 为积性函数，则有 F(x)=∏F(piki)F(x)=\prod F(p_i^{k_i})F(x)=∏F(piki​​) 。 若 F(x)F(x)F(x) 为完全积性函数，则有 F(X)=∏F(pi)kiF(X)=\prod...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/12/03/centroids-conclusion/" title="树的重心相关结论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-03</div><div class="info-item-2">树的重心相关结论</div></div><div class="info-2"><div class="info-item-1">转载：pyqpyq 的Blog  定义 一棵树中以一个节点为根的子树的大小的最大值最小的节点为树的重心。   性质一 一棵树中以重心为根的节点的子树大小均不超过整棵树的大小的一半。 证明： 考虑反证法。 假设一棵树中以重心为根的节点的子树大小有子树超过整棵树的大小的一半。 则以超过整棵的大小的一半的子树的根换为整棵树的根。 以原根为根的子树大小一定不超过整棵树的一半。 若其它子树的大小最大值不超过整棵树大小的一半，则现在的根的子树大小的最大值不超过整棵树大小的一半。 而以树的重心为根的子树大小的最大值不超过整棵树大小的一半。 则以树的重心为根的子树大小的最大值不是最小的，与定义矛盾。 若其它子树的大小最大值超过整棵树大小的一半，则继续以以超过整棵树的大小的一半的子树的根为整棵树的根。 由于每次换根都在往下走，所以肯定可以换到叶子节点或者在中间出现矛盾。 而到叶子节点时也可如上述过程推出矛盾。 所以必然矛盾，假设不成立。 所以一棵树中以重心为根的节点的子树大小均不超过整棵树的大小的一半。  判定一 一棵树中以一个节点为根的子树的大小的最大值最小的节点为树的重心。 就是定义啊。 ...</div></div></div></a><a class="pagination-related" href="/2021/05/29/mobius/" title="莫比乌斯反演"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-29</div><div class="info-item-2">莫比乌斯反演</div></div><div class="info-2"><div class="info-item-1">本来是考试的，但是数论忘了，只好滚去学数论。  性质 若 f(x)f(x)f(x) 和 g(x)g(x)g(x) 均为积性函数，则以下函数也为积性函数： h(x)=f(xp)h(x)=fp(x)h(x)=f(x)g(x)h(x)=∑d∣xf(d)g(xd)\begin{aligned} h(x)&amp;=f(x^p)\\ h(x)&amp;=f^p(x)\\ h(x)&amp;=f(x)g(x)\\ h(x)&amp;=\sum_{d\mid x}f(d)g(\frac{x}{d}) \end{aligned} h(x)h(x)h(x)h(x)​=f(xp)=fp(x)=f(x)g(x)=d∣x∑​f(d)g(dx​)​ 设 x=∏pikix=\prod p_i^{k_i}x=∏piki​​ 若 F(x)F(x)F(x) 为积性函数，则有 F(x)=∏F(piki)F(x)=\prod F(p_i^{k_i})F(x)=∏F(piki​​) 。 若 F(x)F(x)F(x) 为完全积性函数，则有 F(X)=∏F(pi)kiF(X)=\prod...</div></div></div></a><a class="pagination-related" href="/2021/03/23/poly-calc/" title="多项式部分运算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-23</div><div class="info-item-2">多项式部分运算</div></div><div class="info-2"><div class="info-item-1"> 乘法 NTT 构造模意义单位根。 发现 δpgk=(p−1)gcd⁡(k,p−1)\delta_pg^k=\dfrac{(p-1)}{\gcd(k, p -1)}δp​gk=gcd(k,p−1)(p−1)​，当 n∣(p−1)n|(p-1)n∣(p−1) 时， δpg(p−1)/n=(p−1)gcd⁡(p−1n,p−1)=n\delta_pg^{(p-1)/n}=\dfrac{(p-1)}{\gcd(\frac{p-1}{n}, p-1)}=nδp​g(p−1)/n=gcd(np−1​,p−1)(p−1)​=n 令 ωn=g(p−1)/n\omega_n=g^{(p-1)/n}ωn​=g(p−1)/n ，则 ωn0,ωn1,⋯ ,ωnn−1\omega_n^0,\omega_n^1,\cdots,\omega_n^{n-1}ωn0​,ωn1​,⋯,ωnn−1​...</div></div></div></a><a class="pagination-related" href="/2021/04/17/review-hnoi2021/" title="HNOI2021总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-17</div><div class="info-item-2">HNOI2021总结</div></div><div class="info-2"><div class="info-item-1"> 总结  Day1 开考先看看三个题，发现 T2 是个构造，T3 不像是会做的题目，然后就开始想第一题。 正好昨天看了一眼 wqs 二分，这个题目也有一个只能选 kkk 个的限制，于是思路逐渐跑偏，也把模型转换了一下，大概就花了一两个小时的时间，然后发现我不太会做没有限制 kkk 个的情况，但是我还是觉得只是自己最后一步思考得不够深入，画了一堆图，就一直想，甚至把手推 wqs 二分，把昨天没看懂的部分想明白了，最后还是放弃了这个思路，然后很快就想出了一个二分加双指针的做法，也没有什么细节，很快就码完了，但是调了一小会儿，过了几个样例然后就已经十一点半还是十二点了​。 接着赶紧看第二题，没有什么思路，再加上把题目想的复杂了一点，觉得这种限制很难跑，就先写了高斯消元，但是我已经半年没写过高斯消元了，调了一个小时，然后发现这个做法假掉了，赶紧上了一个随机化，在 12:58 的时候过了样例，第三题就没有看。 最终分数：90+0+090+0+090+0+0 ，T1 被卡常了，T2 没搞到分 总结一下 Day1 的失误主要是 T1...</div></div></div></a><a class="pagination-related" href="/2020/10/03/review-p3835/" title="可持久化平衡树"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-03</div><div class="info-item-2">可持久化平衡树</div></div><div class="info-2"><div class="info-item-1">link fhq 改几个函数就可以了  12345int refresh(int id) &#123;    tot++;    p[tot] = p[id];    return tot;&#125; 123456789101112131415void split_by_val(int rt, int &amp;a, int &amp;b, int val) &#123;    if (rt == 0) &#123;        a = b = 0;        return;    &#125;    if (p[rt].val &lt;= val) &#123;        a = refresh(rt);//        split_by_val(p[rt].rs, p[a].rs, b, val);        pushup(a);//记得是pushup(a)，不是pushup(rt)！！！    &#125; else &#123;        b = refresh(rt);//        split_by_val(p[rt].ls, a,...</div></div></div></a><a class="pagination-related" href="/2021/02/06/review-p5851/" title="P5851 (USACO19DEC) Greedy Pie Eaters P"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-06</div><div class="info-item-2">P5851 (USACO19DEC) Greedy Pie Eaters P</div></div><div class="info-2"><div class="info-item-1">区间 dp ，注意枚举端点 i，j，k 的顺序，模拟一下就好了，如果使用了未更新的状态，就是错的 sorry for that i don’t have a chinese input method Functions: g(x, l, r) means we have the largest cow which can eat pos(x) , and it can only affect pies in [l, r] f(x, l, r) means the weight summary that we can get from a sequence of cows, and it only affect pies in [l, r] So we have the things below: 12345678910111213foreach cow_i  foreach x in range[l_i, r_i]  	g(x, l_i, r_i) = w_i;foreach k in [1 -&gt; n]  foreach i in [k -&gt; 1], j in [k...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">cauphenuny</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/cauphenuny" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/08/pattern-match-in-cpp/" title="给C++实现一个模式匹配">给C++实现一个模式匹配</a><time datetime="2024-11-08T14:40:28.000Z" title="发表于 2024-11-08 22:40:28">2024-11-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/05/xcode-python-environment-and-soft-link/" title="Xcode CLT 一个有意思的机制">Xcode CLT 一个有意思的机制</a><time datetime="2024-07-05T09:49:27.000Z" title="发表于 2024-07-05 17:49:27">2024-07-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/14/build-a-windsonglyre-simulator/" title="从零开始打造一个原琴模拟器">从零开始打造一个原琴模拟器</a><time datetime="2024-06-14T06:02:30.000Z" title="发表于 2024-06-14 14:02:30">2024-06-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/19/cpp20-feature-concept/" title="C++20 新特性试玩：concept">C++20 新特性试玩：concept</a><time datetime="2024-04-19T05:52:09.000Z" title="发表于 2024-04-19 13:52:09">2024-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/12/turing-adding-machine/" title="图灵加法器">图灵加法器</a><time datetime="2024-04-12T12:09:50.000Z" title="发表于 2024-04-12 20:09:50">2024-04-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By cauphenuny</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
 
-    </div>
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
 
-    
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/05/29/mobius/" rel="prev" title="莫比乌斯反演">
-                  <i class="fa fa-angle-left"></i> 莫比乌斯反演
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2023/08/09/cs-dialect-transliteration/" rel="next" title="长沙话拼音方案">
-                  长沙话拼音方案 <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">cauphenuny</span>
-  </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-</body>
-</html>
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

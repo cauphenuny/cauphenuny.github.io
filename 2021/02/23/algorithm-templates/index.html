@@ -1,232 +1,156 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"cauphenuny.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="树状数组 bit.h 12345678&#x2F;&#x2F;自定义类型需重载 + - 运算符template &lt;typename T, int maxn&gt;class binary_indexed_tree &#123;    T c[maxn + 10]; public:    void add(int p, T v) &#123; p++; for (; p &lt;&#x3D; maxn; p +&#x3D; p &amp;a">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>一些有用的小模板 | Cauphenuny's Blog</title><meta name="author" content="cauphenuny"><meta name="copyright" content="cauphenuny"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="树状数组 bit.h 12345678&#x2F;&#x2F;自定义类型需重载 + - 运算符template &lt;typename T, int maxn&gt;class binary_indexed_tree &#123;    T c[maxn + 10]; public:    void add(int p, T v) &#123; p++; for (; p &lt;&#x3D; maxn; p +&#x3D; p &amp;a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些有用的小模板">
 <meta property="og:url" content="https://cauphenuny.github.io/2021/02/23/algorithm-templates/index.html">
 <meta property="og:site_name" content="Cauphenuny&#39;s Blog">
 <meta property="og:description" content="树状数组 bit.h 12345678&#x2F;&#x2F;自定义类型需重载 + - 运算符template &lt;typename T, int maxn&gt;class binary_indexed_tree &#123;    T c[maxn + 10]; public:    void add(int p, T v) &#123; p++; for (; p &lt;&#x3D; maxn; p +&#x3D; p &amp;a">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cauphenuny.github.io/image/avatar.jpg">
 <meta property="article:published_time" content="2021-02-23T13:54:05.000Z">
 <meta property="article:modified_time" content="2023-11-18T15:40:43.000Z">
 <meta property="article:author" content="cauphenuny">
 <meta property="article:tag" content="模板">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cauphenuny.github.io/image/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://cauphenuny.github.io/2021/02/23/algorithm-templates/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-
-<link rel="canonical" href="https://cauphenuny.github.io/2021/02/23/algorithm-templates/">
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cauphenuny.github.io/2021/02/23/algorithm-templates/","path":"2021/02/23/algorithm-templates/","title":"一些有用的小模板"}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>一些有用的小模板 | Cauphenuny's Blog</title>
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-<!-- hexo injector head_end start -->
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一些有用的小模板',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">Cauphenuny's Blog</p>
-      <i class="logo-line"></i>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
-  </ul>
-</nav>
-
-
-
-
-</header>
-        
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">cauphenuny</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">64</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">27</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">71</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-        </div>
-      </div>
-    </div>
-
-    
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cauphenuny.github.io/2021/02/23/algorithm-templates/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="cauphenuny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cauphenuny's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="一些有用的小模板 | Cauphenuny's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          一些有用的小模板
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-23 21:54:05" itemprop="dateCreated datePublished" datetime="2021-02-23T21:54:05+08:00">2021-02-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-18 23:40:43" itemprop="dateModified" datetime="2023-11-18T23:40:43+08:00">2023-11-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/oi/" itemprop="url" rel="index"><span itemprop="name">oi</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/oi/%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="index"><span itemprop="name">模板</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody"><p><strong>树状数组</strong> bit.h</p>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/image/cover/4.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent;"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Cauphenuny's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">一些有用的小模板</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">一些有用的小模板</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-23T13:54:05.000Z" title="发表于 2021-02-23 21:54:05">2021-02-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-18T15:40:43.000Z" title="更新于 2023-11-18 23:40:43">2023-11-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/oi/">oi</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/oi/%E6%A8%A1%E6%9D%BF/">模板</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2023-11-18 23:40:43&quot;}" hidden></div><p><strong>树状数组</strong> bit.h</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义类型需重载 + - 运算符</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="type">int</span> maxn&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">binary_indexed_tree</span> &#123;</span><br><span class="line">    T c[maxn + <span class="number">10</span>]; <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> p, T v)</span> </span>&#123; p++; <span class="keyword">for</span> (; p &lt;= maxn; p += p &amp; -p) c[p] += v; &#125;</span><br><span class="line">    <span class="function">T <span class="title">query</span><span class="params">(<span class="type">int</span> p)</span> </span>&#123; p++; T v = <span class="number">0</span>; <span class="keyword">for</span> (; p; p -= p &amp; -p) v += c[p]; <span class="keyword">return</span> v; &#125;</span><br><span class="line">    <span class="function">T <span class="title">range</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">query</span>(r) - <span class="built_in">query</span>(l - <span class="number">1</span>); &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <hr />
 <p><strong>可删堆</strong> deletable_priority_queue.h</p>
@@ -243,94 +167,18 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">remainable_segment_tree</span> &#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        <span class="type">size_t</span> siz;</span><br><span class="line">        Node *ls, *rs;</span><br><span class="line">        <span class="type">int</span> id;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123; siz = ls-&gt;siz + rs-&gt;siz; &#125;</span><br><span class="line">        <span class="built_in">Node</span>(<span class="type">size_t</span> s, Node *ls, Node *rs, <span class="type">int</span> id): <span class="built_in">siz</span>(s), <span class="built_in">ls</span>(ls), <span class="built_in">rs</span>(rs), <span class="built_in">id</span>(id) &#123;&#125;</span><br><span class="line">    &#125; *null;</span><br><span class="line">    vector &lt;Node*&gt; root;</span><br><span class="line">    <span class="type">int</span> minv, maxv, p, tot_id;</span><br><span class="line">    <span class="type">size_t</span> v, rk;</span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> mid ((l + r) &gt;&gt; 1)</span></span><br><span class="line">    <span class="function">Node* <span class="title">refresh</span><span class="params">(Node *pre, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        Node *cur = <span class="keyword">new</span> <span class="built_in">Node</span>(pre-&gt;siz + v, pre-&gt;ls, pre-&gt;rs, ++tot_id);</span><br><span class="line">        <span class="keyword">if</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p &lt;= mid) cur-&gt;ls = <span class="built_in">refresh</span>(pre-&gt;ls, l, mid);</span><br><span class="line">            <span class="keyword">else</span>          cur-&gt;rs = <span class="built_in">refresh</span>(pre-&gt;rs, mid + <span class="number">1</span>, r);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(Node *pre, Node *cur, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l == r) &#123; <span class="keyword">return</span> l; &#125;</span><br><span class="line">        <span class="type">size_t</span> siz = cur-&gt;ls-&gt;siz - pre-&gt;ls-&gt;siz;</span><br><span class="line">        <span class="keyword">if</span> (siz &gt;= rk) &#123; <span class="keyword">return</span> <span class="built_in">query</span>(pre-&gt;ls, cur-&gt;ls, l, mid); &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; rk -= siz; <span class="keyword">return</span> <span class="built_in">query</span>(pre-&gt;rs, cur-&gt;rs, mid + <span class="number">1</span>, r); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#<span class="keyword">undef</span> mid</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">remainable_segment_tree</span>() &#123;</span><br><span class="line">        null = <span class="keyword">new</span> <span class="built_in">Node</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        null-&gt;ls = null-&gt;rs = null, null-&gt;siz = <span class="number">0</span>;</span><br><span class="line">        root.<span class="built_in">push_back</span>(null);</span><br><span class="line">        minv = maxv = tot_id = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getpos</span><span class="params">(<span class="type">size_t</span> pre, <span class="type">size_t</span> cur, <span class="type">size_t</span> rank)</span> </span>&#123;</span><br><span class="line">        rk = rank;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">query</span>(root[pre], root[cur], minv, maxv);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">size_t</span> pre, <span class="type">size_t</span> cur, <span class="type">int</span> pos, <span class="type">size_t</span> val)</span> </span>&#123; <span class="comment">// create a new version</span></span><br><span class="line">        <span class="keyword">if</span> (cur == root.<span class="built_in">size</span>()) root.<span class="built_in">push_back</span>(null);</span><br><span class="line">        v = val, p = pos;</span><br><span class="line">        root[cur] = <span class="built_in">refresh</span>(root[pre], minv, maxv);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">set_limit</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123; <span class="comment">// remember to set it !!!!!!</span></span><br><span class="line">        <span class="keyword">if</span> (root.<span class="built_in">size</span>() &lt;= <span class="number">1</span>) minv = l, maxv = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">move</span><span class="params">(<span class="type">size_t</span> dest, <span class="type">size_t</span> source)</span> </span>&#123;</span><br><span class="line">        root[dest] = root[source];</span><br><span class="line">    &#125;</span><br><span class="line">&#125; tree;</span><br></pre></td></tr></table></figure>
 <p><strong>KD-tree</strong> kdt.h</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 区间加减修改，单点查询 K-D tree，维护了历史最小值</span></span><br><span class="line"><span class="comment"> * usage:</span></span><br><span class="line"><span class="comment"> * kdt::kd_tree&lt;2&gt; tree;</span></span><br><span class="line"><span class="comment"> * kdt::kd_tree&lt;2&gt;::kd_val x[MAXN];</span></span><br><span class="line"><span class="comment"> * for (int i = 1; i &lt;= n; i++) x[i].pos = &#123;%d, %d&#125;, x[i].val = %d;</span></span><br><span class="line"><span class="comment"> * tree.init(x + 1, x + n + 1);</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> kdt &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> inf = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> array = initializer_list&lt;<span class="type">int</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="type">bool</span> <span class="title">chkmax</span><span class="params">(T &amp;a, <span class="type">const</span> T b)</span> </span>&#123; <span class="keyword">return</span> b &gt; a ? (a = b, <span class="number">1</span>) : <span class="number">0</span>; &#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="type">bool</span> <span class="title">chkmin</span><span class="params">(T &amp;a, <span class="type">const</span> T b)</span> </span>&#123; <span class="keyword">return</span> b &lt; a ? (a = b, <span class="number">1</span>) : <span class="number">0</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="type">const</span> <span class="type">int</span> d_size&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">kd_tree</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">kd_pos</span> &#123;</span><br><span class="line">        <span class="type">int</span> pos[d_size];</span><br><span class="line">        <span class="type">int</span>  <span class="keyword">operator</span> [] (<span class="type">const</span> <span class="type">int</span> x) <span class="type">const</span> &#123; <span class="keyword">return</span> pos[x]; &#125;</span><br><span class="line">        <span class="type">int</span> &amp;<span class="keyword">operator</span> [] (<span class="type">const</span> <span class="type">int</span> x) &#123; <span class="keyword">return</span> pos[x]; &#125;</span><br><span class="line">        <span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span> == (<span class="type">const</span> kd_pos &amp;v) <span class="type">const</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; d_size; i++) <span class="keyword">if</span> (v.pos[i] != pos[i]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span> &lt;= (<span class="type">const</span> kd_pos &amp;v) <span class="type">const</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; d_size; i++) <span class="keyword">if</span> (pos[i] &gt; v.pos[i]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">kd_pos</span>(array a) &#123; <span class="type">int</span> j = <span class="number">0</span>; <span class="keyword">for</span> (<span class="keyword">auto</span> i : a) &#123; pos[j++] = i; &#125; &#125;</span><br><span class="line">        <span class="built_in">kd_pos</span>(<span class="type">int</span> x) &#123; <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; d_size; i++) pos[i] = x; &#125;</span><br><span class="line">        <span class="built_in">kd_pos</span>() : <span class="built_in">kd_pos</span>(<span class="number">0</span>) &#123;&#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123; <span class="built_in">debugf</span>(<span class="string">&quot;&#123;%lld, %lld&#125;&quot;</span>, pos[<span class="number">0</span>], pos[<span class="number">1</span>]); &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">kd_val</span> &#123;</span><br><span class="line">        kd_pos pos;</span><br><span class="line">        <span class="type">int</span> val;</span><br><span class="line">        <span class="type">int</span> &amp;<span class="keyword">operator</span> [] (<span class="type">const</span> <span class="type">int</span> x) &#123; <span class="keyword">return</span> pos[x]; &#125;</span><br><span class="line">        <span class="built_in">kd_val</span>() : <span class="built_in">pos</span>(), <span class="built_in">val</span>(<span class="number">0</span>) &#123;&#125;</span><br><span class="line">        <span class="built_in">kd_val</span>(array pos, <span class="type">int</span> val) : <span class="built_in">pos</span>(pos), <span class="built_in">val</span>(val) &#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="type">int</span> tot_id; <span class="comment">// for debug</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">kd_node</span> &#123;</span><br><span class="line">        <span class="type">int</span> id; <span class="comment">// for debug</span></span><br><span class="line">        kd_pos min, max, pos;</span><br><span class="line">        <span class="type">int</span> tag, val;</span><br><span class="line">        <span class="type">int</span> mintag, minv;</span><br><span class="line">        kd_node *ls, *rs;</span><br><span class="line">        <span class="built_in">kd_node</span>() : <span class="built_in">min</span>(inf), <span class="built_in">max</span>(-inf), <span class="built_in">tag</span>(<span class="number">0</span>) &#123;&#125;</span><br><span class="line">    &#125; empty, *null;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">info</span><span class="params">(kd_node* p)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">debugf</span>(<span class="string">&quot;node #%lld (%lld, %lld) &#123;\n&quot;</span></span><br><span class="line">                <span class="string">&quot;    range (%lld, %lld) ==&gt; (%lld, %lld)\n&quot;</span></span><br><span class="line">                <span class="string">&quot;    son: #%lld, #%lld\n&quot;</span></span><br><span class="line">                <span class="string">&quot;    minv = %lld, mintag = %lld\n&quot;</span></span><br><span class="line">                <span class="string">&quot;    curval = %lld, curtag = %lld\n&quot;</span></span><br><span class="line">                <span class="string">&quot;&#125;\n&quot;</span>,</span><br><span class="line">                p-&gt;id, p-&gt;pos[<span class="number">0</span>], p-&gt;pos[<span class="number">1</span>],</span><br><span class="line">                p-&gt;min[<span class="number">0</span>], p-&gt;min[<span class="number">1</span>], p-&gt;max[<span class="number">0</span>], p-&gt;max[<span class="number">1</span>],</span><br><span class="line">                p-&gt;ls-&gt;id, p-&gt;rs-&gt;id,</span><br><span class="line">                p-&gt;minv, p-&gt;mintag, p-&gt;val, p-&gt;tag</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> kd_node* <span class="title">new_node</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        kd_node* cur = <span class="keyword">new</span> kd_node;</span><br><span class="line">        cur-&gt;ls = cur-&gt;rs = null;</span><br><span class="line">        cur-&gt;id = ++tot_id;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(kd_node *p, <span class="type">int</span> tag, <span class="type">int</span> mintag)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (p == null) <span class="keyword">return</span>;</span><br><span class="line">        <span class="built_in">chkmin</span>(p-&gt;minv, p-&gt;val + mintag);</span><br><span class="line">        <span class="built_in">chkmin</span>(p-&gt;mintag, p-&gt;tag + mintag);</span><br><span class="line">        p-&gt;tag += tag;</span><br><span class="line">        p-&gt;val += tag;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">pushup</span><span class="params">(kd_node *p)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; d_size; i++) &#123;</span><br><span class="line">            <span class="built_in">chkmin</span>(p-&gt;min[i], <span class="built_in">min</span>(p-&gt;ls-&gt;min[i], p-&gt;rs-&gt;min[i]));</span><br><span class="line">            <span class="built_in">chkmax</span>(p-&gt;max[i], <span class="built_in">max</span>(p-&gt;ls-&gt;max[i], p-&gt;rs-&gt;max[i]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">pushdown</span><span class="params">(kd_node *p)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">add</span>(p-&gt;ls, p-&gt;tag, p-&gt;mintag), <span class="built_in">add</span>(p-&gt;rs, p-&gt;tag, p-&gt;mintag);</span><br><span class="line">        p-&gt;mintag = p-&gt;tag = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">kd_node* <span class="title">build</span><span class="params">(kd_val a[], <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">nth_element</span>(a + l, a + mid, a + r + <span class="number">1</span>, [d] (kd_val a, kd_val b) &#123;<span class="keyword">return</span> a[d] &lt; b[d];&#125;);</span><br><span class="line">        kd_node* cur = <span class="built_in">new_node</span>();</span><br><span class="line">        cur-&gt;pos = cur-&gt;min = cur-&gt;max = a[mid].pos;</span><br><span class="line">        cur-&gt;val = cur-&gt;minv = a[mid].val;</span><br><span class="line">        <span class="keyword">if</span> (l &lt; mid) cur-&gt;ls = <span class="built_in">build</span>(a, l, mid - <span class="number">1</span>, (d + <span class="number">1</span>) % d_size);</span><br><span class="line">        <span class="keyword">if</span> (mid &lt; r) cur-&gt;rs = <span class="built_in">build</span>(a, mid + <span class="number">1</span>, r, (d + <span class="number">1</span>) % d_size);</span><br><span class="line">        <span class="built_in">pushup</span>(cur);</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(kd_node *p, <span class="type">const</span> kd_pos &amp;min, <span class="type">const</span> kd_pos &amp;max, <span class="type">int</span> v)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (((<span class="type">int</span>)(p-&gt;min &lt;= max) + (<span class="type">int</span>)(min &lt;= p-&gt;max)) != <span class="number">2</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (min &lt;= p-&gt;min &amp;&amp; p-&gt;max &lt;= max) &#123; <span class="built_in">add</span>(p, v, v); <span class="keyword">return</span>; &#125;</span><br><span class="line">        <span class="built_in">pushdown</span>(p);</span><br><span class="line">        <span class="keyword">if</span> (min &lt;= p-&gt;pos &amp;&amp; p-&gt;pos &lt;= max) &#123; p-&gt;val += v, <span class="built_in">chkmin</span>(p-&gt;minv, p-&gt;val);&#125;</span><br><span class="line">        <span class="built_in">modify</span>(p-&gt;ls, min, max, v), <span class="built_in">modify</span>(p-&gt;rs, min, max, v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(kd_node *p, <span class="type">const</span> kd_pos &amp;pos, <span class="type">int</span> d = <span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((p-&gt;min &lt;= pos || pos &lt;= p-&gt;max) == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;pos == pos) <span class="keyword">return</span> p-&gt;minv;</span><br><span class="line">        <span class="built_in">pushdown</span>(p);</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (pos &lt;= p-&gt;ls-&gt;max &amp;&amp; pos[d] &lt;= p-&gt;pos[d])</span><br><span class="line">            res = <span class="built_in">query</span>(p-&gt;ls, pos, (d + <span class="number">1</span>) % d_size);</span><br><span class="line">        <span class="keyword">if</span> (res == <span class="number">0</span>)</span><br><span class="line">            res = <span class="built_in">query</span>(p-&gt;rs, pos, (d + <span class="number">1</span>) % d_size);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(kd_node* p, <span class="type">int</span> depth = <span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">info</span>(p);</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;ls != null) <span class="built_in">print</span>(p-&gt;ls);</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;rs != null) <span class="built_in">print</span>(p-&gt;rs);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">kd_node* <span class="title">init</span><span class="params">(kd_val* st, kd_val* ed)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">build</span>(st, <span class="number">0</span>, ed - st - <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">kd_tree</span>() &#123; null = &amp;empty; null-&gt;ls = null-&gt;rs = null; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://cauphenuny.github.io">cauphenuny</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://cauphenuny.github.io/2021/02/23/algorithm-templates/">https://cauphenuny.github.io/2021/02/23/algorithm-templates/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://cauphenuny.github.io" target="_blank">Cauphenuny's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%A8%A1%E6%9D%BF/">模板</a></div><div class="post-share"><div class="social-share" data-image="/image/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/02/24/geometry-inverse/" title="圆反演变换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">圆反演变换</div></div><div class="info-2"><div class="info-item-1"> 定义 给定反演中心点 OOO 和反演半径 RRR 。若平面上点 PPP 和 P′P&#x27;P′ 满足：  点 P′P&#x27;P′ 在射线 OP→\overrightarrow{OP}OP 上 ∣OP∣⋅∣OP′∣=R2|OP| \cdot |OP&#x27;| = R^2∣OP∣⋅∣OP′∣=R2  则称点 PPP 和点 P′P&#x27;P′ 互为反演点。 下图所示即为平面上一点 PPP 的反演：   性质   圆 OOO 外的点的反演点在圆 OOO 内，反之亦然；圆 OOO 上的点的反演点为其自身。   不过点 OOO 的圆 AAA ，其反演图形也是不过点 OOO 的圆。    记圆 AAA 半径为 r1r_1r1​ ，其反演图形圆 BBB 半径为 r2r_2r2​ ，则有： r2=12(1∣OA∣−r1−1∣OA∣+r1)R2r_2 = \frac{1}{2}\left(\frac{1}{|OA| - r_1} - \frac{1}{|OA| + r_1}\right)...</div></div></div></a><a class="pagination-related" href="/2021/02/23/exam-20210222/" title="20210222 考试总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">20210222 考试总结</div></div><div class="info-2"><div class="info-item-1">改题进度  [x] forgive [x] palingenesis [x] destiny   Review 人要有梦想，暴力还是要打的，没准就过了呢。  Solution  T1 forgive  平面内 nnn 个点 (xi,yi)(x_i,y_i)(xi​,yi​)，每个点有 ppp 的概率出现，保证三点不共线。可以在两个点之间连一条线段，线段之间不能相交，求最多可以连的线段数的期望。  考虑一个平面图，一定是三角剖分时连的线段最多。 对于一个三角剖分  我们想求的就是剖分的线段数。 设边数为 EEE ，点数为 VVV ，凸包上有 kkk 个点，FFF 个有界面，则有结论 E=3V−k−3E=3V-k-3E=3V−k−3 下面证明这个结论。 对于平面图，有欧拉公式 V+F−E=1V+F-E=1V+F−E=1 ，又有 2E=3F+k2E=3F+k2E=3F+k （三角形三条边，加上凸包上的边就都算了两次） 将两个式子做一些运算，即可得到 E=3V−k−3E=3V-k-3E=3V−k−3 。 期望即为...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">cauphenuny</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/cauphenuny" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/08/pattern-match-in-cpp/" title="给C++实现一个模式匹配">给C++实现一个模式匹配</a><time datetime="2024-11-08T14:40:28.000Z" title="发表于 2024-11-08 22:40:28">2024-11-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/05/xcode-python-environment-and-soft-link/" title="Xcode CLT 一个有意思的机制">Xcode CLT 一个有意思的机制</a><time datetime="2024-07-05T09:49:27.000Z" title="发表于 2024-07-05 17:49:27">2024-07-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/14/build-a-windsonglyre-simulator/" title="从零开始打造一个原琴模拟器">从零开始打造一个原琴模拟器</a><time datetime="2024-06-14T06:02:30.000Z" title="发表于 2024-06-14 14:02:30">2024-06-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/19/cpp20-feature-concept/" title="C++20 新特性试玩：concept">C++20 新特性试玩：concept</a><time datetime="2024-04-19T05:52:09.000Z" title="发表于 2024-04-19 13:52:09">2024-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/12/turing-adding-machine/" title="图灵加法器">图灵加法器</a><time datetime="2024-04-12T12:09:50.000Z" title="发表于 2024-04-12 20:09:50">2024-04-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By cauphenuny</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
 
-    </div>
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
 
-    
-    
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag"># 模板</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/02/23/exam-20210222/" rel="prev" title="20210222 考试总结">
-                  <i class="fa fa-angle-left"></i> 20210222 考试总结
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/02/24/geometry-inverse/" rel="next" title="圆反演变换">
-                  圆反演变换 <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">cauphenuny</span>
-  </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-</body>
-</html>
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
