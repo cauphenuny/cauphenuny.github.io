@@ -4270,7 +4270,7 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v1200 v585 h43z"/></svg></span></span
       </tags>
   </entry>
   <entry>
-    <title>brainf**k 代码生成器</title>
+    <title>brainfuck 代码生成器</title>
     <url>/2024/11/22/brainf-k-generator/</url>
     <content><![CDATA[<p>最近在做一个编译原理lab</p>
 <p>☝️🤓诶，我已经有结构化的AST和IR了，岂不是能不太费劲地地写出一些有意思的东西？</p>
