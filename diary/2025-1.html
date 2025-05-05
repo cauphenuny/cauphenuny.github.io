@@ -1,0 +1,408 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2025(1) | Cauphenuny's Blog</title><meta name="author" content="Cauphenuny"><meta name="copyright" content="Cauphenuny"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里有东西被加密了，需要输入密码查看哦。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2025(1)">
+<meta property="og:url" content="https://cauphenuny.github.io/diary/2025-1.html">
+<meta property="og:site_name" content="Cauphenuny&#39;s Blog">
+<meta property="og:description" content="这里有东西被加密了，需要输入密码查看哦。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cauphenuny.github.io/image/cover/3.jpg">
+<meta property="article:published_time" content="2021-05-10T09:46:48.000Z">
+<meta property="article:modified_time" content="2025-04-20T13:03:14.703Z">
+<meta property="article:author" content="Cauphenuny">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cauphenuny.github.io/image/cover/3.jpg"><link rel="shortcut icon" href="/image/avatar.jpg"><link rel="canonical" href="https://cauphenuny.github.io/diary/2025-1.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":5,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2025(1)',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/callout.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/image/background/0-blur30.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page fixed" id="page-header" style="background: transparent;"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Cauphenuny's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">2025(1)</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="b10791ab104a89776088ef9feeb7640ab485d541861722ac7607f2f49f3da771">e6e925cc088b52ede3d7efa12e597700904b8c207e0c3a66d63c298ef13dc9215401f057d3d82a499329846260d36c95203f19511631986ab733958f3904418140f2088d3252cc601c15cced44f4090eab7f9f0f2d5c3138d054c1e301b0d082d549e7637ecff968b0bd8ae64d0a7c60b4ddd91d25ee1c4a41115acf0f797d324ee42fc75329e3120d68897e2ad53e87898555b67d5d801c6868efa7cce63ec3295a0b41dc2d270c69ae41277f8bb044fbdfa4ef38c90a490e874d48bcf6c8f40c9429510ee32cafcd38364d9bbb8434ec4d02c8d73f775a41d61957c36c27059bacb1e1d88cd5c2612484ce340835750fad7c070dae49853a94856942b3c0708cd6fb987b9a30addedcd72999c178bb628dd8687850a1a0499361434d5247f6f25df6c4c368c351b7b78bc792d7a779ad1018ce835be413d874d393cddae0ed071df8def1f97999b6c7433cc39fdb53f2b55d57f6bebb306808fb24d8b0c2da6049778ffa558d99632427fa85577a1fa49aeaf7195fc8c7d2c793d82f03d90213fccb723d4953832f5a02f78be38cc3746a04152442fa59581fe7333bdbea3e172168e20599cd6ab9fbb9f113209bd50251db6fe487d768816ed625d602fd5584084de5706624fa90216ad323d21a8789b005ff8bc7a20260ea90090cbc9c136761cdf3be2270aff851550bb6ee9821157cbba9ce833562d5bab00262268b1b56a46c58a4d66ae7d98ee33a64ac20b3744ac4b0a6582cd23bab99119690922dcaceec5dfc6bc22e59d2c4626130452b40060a2573ee9abe20338e38464c3f08d236431f1b654aa4b2e078c05762d20df119ce044f960238601b8b827cf997bdfd267dd70b74de07be4829eee017f477e8adb753bdf7b70390a32419188f3b306b80aa49e31ea1e75b0520a1367b6dbb92eaf59a98a12d2a2f92b09ca6de57456cd3af47def3d55bf3003ca5e3e51e3bf87d3c46560e2e436e10428041e5d441463fe024200a13d14abd3acff90dbf6cfc45454e6b5a8e5cb99392439aa7f62cdab7996660e8179ad7f3c70ca2046ce0e12972a3446e8cbcfd8d9c28e59fc771cc8d5b125068d327b0e9c5b3a01c8ba7b6b7d4daafa3472d41366b4db7ddc51cfddd060b3b7bc2d13102ffacbdebecb9cf586f561f85d2ecb168e9faa2820f819f836a7dc9c459ae425a25fc0f14bd303b1d68930b58d17a95cbd17a541752715cbcd010007840896421474c899da49b867e3e20a7d099b7fc5626268879c3f780b8626f9727d9b971e15ff262c25fae1c0feac8c1dd2bad8f7240c1a8b19ac2ce38b633ca52058246e2eb2f85aa89657ca1a02f48538ace6ac542aa2d3444bc6ad9fd3c3ea8afdee665be1e480c68470fc63ea1215d255bfbed9ad662e1844050601169fc2dec3a75ed0e609d6aa73ffb96fc01526e11ee3d8c9eeb1ec63be90d96acd1514344c6f92688144302372154b5f3ec02bd36dfc1bbbc3d53efdb199e9b165acb50508ccd9265507b2ef700eb88f8ee86635e32c365d79b700ef3ee7296f91e79a931275ce456d50269ffa78da2b3508a88440a0c5ecd498b588f4bd58f7d4f85f5050ca0b3acfdcf7346d5331cff267627244a2eb1a0ac88524aceb19d75695cb1d5259225b07b3491f1c22cb51a68cff7edc66ae1cf7ef8a2cd6202fc8b1117b3f89339745cd8a9fd5dee79b36dc08947ffe240f2bf0eea6c7edbbdc2646839be4a4338bcc46d15047d1c7896dd6440bdcb16d20bcd48ee6ef1c304a4b3f9a38206aaa133df5c6b12e3eb2d7372b32466581d91905bf0e2cfbea769c18e0451b1d0e569662ad19e9442a00637803b4e06d8a4e3a59cc54e2fc4c32cf69e19f9a9288e557bdbdcb1dd2e4cf2f130a8adf948d44d7411a698f4d4efa9f6ee6e474c29b2a2a26f9aa4a15bc7c4205385631227de9837afa7314e57479da1e4d5796bb73942ba2807c1dc0f36676531e55db4270837f7939f41ecd38bc9bfb60b2ae7a7dad9121e42d147a9f6db7d428ef738870a6e99c565f54d668cea7d0b93045f3c855a2d0fcb915a5536ea263df2ca47f26ded8f5245bd4dff243048ed250473ae2f8a0d967afd947028a9adc3375b333e6898d00de3d2c6a4bc7697fdec91effdb5ba2c7639f0c693411b172211a135bfd9c41c82d7fdb0c6e08873a7ed0782cc26af7aa917c2142534caf10587930b41490d7488a7a51e5fe7be7eef915cbe29988461a8d2646c8b1461e683517b36aaf2a634e6e523ff92bfcb9c5a5a11a324b9f9fcc4cf3034a0a8396626ffa08720900054c2c8cc1ebca3c98153053b1b78a2b1381fb685d823bc7baf9f1d095502569d5e38db6e6b4085fe299cec84f865cd8c60979a12542dd7791ba71b316a5311ce97d1f93db9211e6688cb23163e03471f35d352f0ecb89957dc6a9fadf3b835355b9092a09da231f40ec4957a413e44d3a8ab5f298d8b509169e6c5c22b569ba97ef4e1e405a5ab01039310e3f092f30928dcd78c28bb56f5ff0b6306c93a07fa70b77110b8c05ea52cbfaa81e56376d37e779d718a88d84efc4dd7679c902e41b8f9f0e51893175c7bd0635191e3202b39b2204f6c9c74a0d42e4494b8634543a877c9efedc72d7ca0f8a242f47843ae4d85825beb563a2f309c183ad100314ffc5141fadfae4fe2b553fc64de89911f4fa501b92b4b1577120864ea9b00800cc0cd174ad26aca026c9c576acd36c24869e357f775266a5c741b18b1a06172b360933be1443dae3398c987016dd7c4121b8020d234efc6c34602b047314e7b6918207729a11c0112421118a01db475bc7990dabc010acfb927a827218773f2d8cf4cef1110f1862c2f84c7f70730028dcd3291b202d9a8c7c3c026313244254781fe74186dd39fefe5e34630cf66ca110859e88e1f0b55be8d44a2fd58f72ff60d64daa69f7a80e442acaddf0c90bd1b14b7c91215213f106021415ecb7de0fdc53ee46210c7a33a9f826ef4b093b60a7a9459b2d86e576f2ae6c51c1fac59bac7cc14c96bba4a52933d3f70317175dd8de8caa7227a9e54ba920849c61b739be11bf2607845887f0712d7cdf35d04036169f3b75b847a9df49bf79e55b7de01e33db4414b3b2d4a765a2f0d9642fe450c061b3169ecffc869ab9e362e8bac013ebaa0326e28e8e06635a64b604aa7f240075419c4b61ab88870f49191fa8616b6da3282d4a15be150b7b8d68d37cb57c47a6570884a4654626d98abde15cc737e4290d84e9d7a8f0d355b9ed2d477b76ba7d8991477d6aea4e43ab2c8ac26a465916c46b059dd9464ea011c7beaff86026f2bd6732b522e3bca9f05586fd65067e35bfc7cfbe861ea68e80703fdc007ce42f4c36ea4ff44bab0b6ca6459208a1f6659a8f2831f89d41acca7041c9dfb825b580543a1c02984c62045cbbcf69e09fecb64da47a2efc39b3c4b1c2aa32ef5a4561480b4ab2d02110cc3687ee637507b336ad843276d439779c37647efcf2984299717bd420a3bcb5447405b57e2dd64c73a8244ed6947ef41decda7e0600ca21cd411fb6ac9cf228f4a9da792b31c0cbd941cd96f75d2b3d72340549916ad91331a6c5be6c1f816754cb032b1e20f2eb24032bdd287c8f79dc523d6b83a21978f999e8a8f2ef1f7a16414aff1c07d2c04282c857b25ee2ca7af777eea827eac0326fb442656171d0e3b9ae6abdfad40d710d902b2c95c292cde20b8799e9478ae62eebf02cac503129e3463a9319cd7636cf2ea4dd43e27da069190ee84f045082872354e</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-up">
+      <input class="hbe hbe-input-field hbe-input-field-up" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-up" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-up">这里需要密码</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css"></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Cauphenuny</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/cauphenuny"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/03/basics-of-diffusion/" title="Basics of Diffusion">Basics of Diffusion</a><time datetime="2025-05-03T14:08:40.000Z" title="发表于 2025-05-03 22:08:40">2025-05-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/11/cod-lab-notes/" title="计组实验笔记">计组实验笔记</a><time datetime="2025-04-11T06:00:34.000Z" title="发表于 2025-04-11 14:00:34">2025-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/08/debug-amd64-program-on-arm-host/" title="在 arm host 上使用 gdb 调试 amd64 程序">在 arm host 上使用 gdb 调试 amd64 程序</a><time datetime="2025-04-08T13:54:41.000Z" title="发表于 2025-04-08 21:54:41">2025-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/22/brainf-k-generator/" title="brainfuck 代码生成工具 - 将C代码编译到brainfuck">brainfuck 代码生成工具 - 将C代码编译到brainfuck</a><time datetime="2024-11-21T16:05:35.000Z" title="发表于 2024-11-22 00:05:35">2024-11-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/08/pattern-match-in-cpp/" title="给C++实现一个模式匹配">给C++实现一个模式匹配</a><time datetime="2024-11-08T14:40:28.000Z" title="发表于 2024-11-08 22:40:28">2024-11-08</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CS/"><span class="card-category-list-name">CS</span><span class="card-category-list-count">6</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CS/cpp/"><span class="card-category-list-name">cpp</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CS/env/"><span class="card-category-list-name">env</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CS/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><span class="card-category-list-name">编译原理</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CS/%E8%AE%A1%E7%A7%91%E5%AF%BC/"><span class="card-category-list-name">计科导</span><span class="card-category-list-count">2</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/oi/"><span class="card-category-list-name">oi</span><span class="card-category-list-count">51</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/oi/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/oi/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/dp/"><span class="card-category-list-name">dp</span><span class="card-category-list-count">2</span></a></li></ul></li></ul></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%A1%8C%E5%88%97%E5%BC%8F/" style="font-size: 1.1em; color: #999">行列式</a> <a href="/tags/C/" style="font-size: 1.2em; color: #999da3">C++</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 1.1em; color: #999">编译原理</a> <a href="/tags/verilog/" style="font-size: 1.1em; color: #999">verilog</a> <a href="/tags/JavaScript/" style="font-size: 1.1em; color: #999">JavaScript</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" style="font-size: 1.3em; color: #99a1ac">线性代数</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.3em; color: #99a1ac">数据结构</a> <a href="/tags/clang/" style="font-size: 1.1em; color: #999">clang</a> <a href="/tags/%E6%8D%A2%E6%A0%B9-dp/" style="font-size: 1.1em; color: #999">换根 dp</a> <a href="/tags/SAM/" style="font-size: 1.2em; color: #999da3">SAM</a> <a href="/tags/vim/" style="font-size: 1.2em; color: #999da3">vim</a> <a href="/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" style="font-size: 1.1em; color: #999">莫比乌斯反演</a> <a href="/tags/%E5%8C%BA%E9%97%B4dp/" style="font-size: 1.1em; color: #999">区间dp</a> <a href="/tags/System/" style="font-size: 1.1em; color: #999">System</a> <a href="/tags/Compiler/" style="font-size: 1.1em; color: #999">Compiler</a> <a href="/tags/llvm/" style="font-size: 1.1em; color: #999">llvm</a> <a href="/tags/%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0/" style="font-size: 1.1em; color: #999">积性函数</a> <a href="/tags/%E4%B8%89%E8%A7%92%E5%89%96%E5%88%86/" style="font-size: 1.1em; color: #999">三角剖分</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" style="font-size: 1.2em; color: #999da3">计算几何</a> <a href="/tags/%E6%9E%84%E9%80%A0/" style="font-size: 1.1em; color: #999">构造</a> <a href="/tags/%E6%9C%9F%E6%9C%9B/" style="font-size: 1.1em; color: #999">期望</a> <a href="/tags/brainfuck/" style="font-size: 1.1em; color: #999">brainfuck</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 1.5em; color: #99a9bf">学习笔记</a> <a href="/tags/cpp/" style="font-size: 1.2em; color: #999da3">cpp</a> <a href="/tags/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0/" style="font-size: 1.1em; color: #999">抽象代数</a> <a href="/tags/%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F/" style="font-size: 1.2em; color: #999da3">欧拉公式</a> <a href="/tags/bitset/" style="font-size: 1.1em; color: #999">bitset</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 1.2em; color: #999da3">二分图</a> <a href="/tags/BSGS/" style="font-size: 1.1em; color: #999">BSGS</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 1.1em; color: #999">分块</a> <a href="/tags/FFT/" style="font-size: 1.2em; color: #999da3">FFT</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 1.1em; color: #999">卷积</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 1.1em; color: #999">环境</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 1.4em; color: #99a5b6">学习记录</a> <a href="/tags/Bezout%E5%AE%9A%E7%90%86/" style="font-size: 1.1em; color: #999">Bézout定理</a> <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" style="font-size: 1.2em; color: #999da3">线段树</a> <a href="/tags/HNOI2021/" style="font-size: 1.1em; color: #999">HNOI2021</a> <a href="/tags/%E8%83%8C%E5%8C%85/" style="font-size: 1.1em; color: #999">背包</a> <a href="/tags/%E5%9B%9B%E5%85%83%E7%8E%AF%E8%AE%A1%E6%95%B0/" style="font-size: 1.1em; color: #999">四元环计数</a> <a href="/tags/%E7%9F%A9%E9%98%B5/" style="font-size: 1.1em; color: #999">矩阵</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/05/">
+          <span class="card-archive-list-date">五月 2025</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/04/">
+          <span class="card-archive-list-date">四月 2025</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/07/">
+          <span class="card-archive-list-date">七月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/06/">
+          <span class="card-archive-list-date">六月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/04/">
+          <span class="card-archive-list-date">四月 2024</span>
+          <span class="card-archive-list-count">3</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/01/">
+          <span class="card-archive-list-date">一月 2024</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/12/">
+          <span class="card-archive-list-date">十二月 2023</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">68</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">81.1k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-05-05T11:43:12.426Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Cauphenuny</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>(() => {
+  const panguFn = () => {
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
+    else {
+      btf.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+        .then(() => {
+          pangu.autoSpacingPage()
+        })
+    }
+  }
+
+  const panguInit = () => {
+    if (false){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', panguInit, 'pangu')
+  document.addEventListener('DOMContentLoaded', panguInit)
+})()</script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.485870.xyz/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script>window.newestComments = {
+  changeContent: content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<code>.*?<\/code>/gi, '[代码]') // replace code      
+    content = content.replace(/<[^>]+>/g, "") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0, 150) + '...'
+    }
+    return content
+  },
+
+  generateHtml: (array, ele) => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class="aside-list-item">'
+
+        if (false && array[i].avatar) {
+          const imgAttr = 'src'
+          result += `<a href="${array[i].url}" class="thumbnail"><img ${imgAttr}="${array[i].avatar}" alt="${array[i].nick}"></a>`
+        }
+
+        result += `<div class="content">
+        <a class="comment" href="${array[i].url}" title="${array[i].content}">${array[i].content}</a>
+        <div class="name"><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '暂无评论'
+    }
+
+    ele.innerHTML = result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh(ele)
+  },
+
+  newestCommentInit: (name, getComment) => {
+    const $dom = document.querySelector('#card-newest-comments .aside-list')
+    if ($dom) {
+      const data = btf.saveToLocal.get(name)
+      if (data) {
+        newestComments.generateHtml(JSON.parse(data), $dom)
+      } else {
+        getComment($dom)
+      }
+    }
+  },
+
+  run: (name, getComment) => {
+    newestComments.newestCommentInit(name, getComment)
+    btf.addGlobalFn('pjaxComplete', () => newestComments.newestCommentInit(name, getComment), name)
+  }
+}</script><script>window.addEventListener('load', () => {
+  const keyName = 'waline-newest-comments'
+  const { changeContent, generateHtml, run } = window.newestComments
+
+  const getComment = async (ele) => {
+    try {
+      const res = await fetch('https://waline.485870.xyz/api/comment?type=recent&count=6', { method: 'GET' })
+      const result = await res.json()
+      const walineArray = result.data.map(e => {
+        return {
+          'content': changeContent(e.comment),
+          'avatar': e.avatar,
+          'nick': e.nick,
+          'url': e.url + '#' + e.objectId,
+          'date': e.time || e.insertedAt
+        }
+      })
+      btf.saveToLocal.set(keyName, JSON.stringify(walineArray), 10/(60*24))
+      generateHtml(walineArray, ele)
+    } catch (err) {
+      console.error(err)
+      ele.textContent= "无法获取评论，请确认相关配置是否正确"
+    }
+  }
+
+  run(keyName, getComment)
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
