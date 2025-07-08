@@ -5685,7 +5685,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">next</span>, *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="type">char</span> data[];</span><br><span class="line">&#125; ListNode;</span><br></pre></td></tr></table></figure>
 <p>但这样相当于把类型擦除了，无法在编译时检查类型。为了实现类型安全，我们需要在容器中存储类型信息。</p>
 <p>定义一个 union，存下类型信息</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> List(type) \</span></span><br><span class="line"><span class="meta">union &#123;</span></span><br><span class="line">    ListNode* ndoe;</span><br><span class="line">    type* type_info;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> List(type)      \</span></span><br><span class="line"><span class="meta">union &#123;                 \</span></span><br><span class="line"><span class="meta">    ListNode* node;     \</span></span><br><span class="line"><span class="meta">    type* type_info;    \</span></span><br><span class="line"><span class="meta">&#125;;</span></span><br></pre></td></tr></table></figure>
 
 <div class="callout" data-callout="example">
 <div class="callout-title">
@@ -5713,7 +5713,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">error: pointer type <span class="title function_">mismatch</span> <span class="params">(<span class="string">&#x27;Foo *&#x27;</span> and <span class="string">&#x27;Bar *&#x27;</span>)</span> [-Werror,-Wpointer-type-mismatch]</span><br><span class="line">   38 |     <span class="title function_">list_prepend</span><span class="params">(&amp;foo_list, &amp;bar)</span>;</span><br><span class="line">      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">note: expanded from macro <span class="string">&#x27;list_prepend&#x27;</span></span><br><span class="line">   <span class="number">15</span> |     _list_prepend(&amp;((<span class="built_in">list</span>)-&gt;head), (<span class="number">1</span> ? (item) : (<span class="built_in">list</span>)-&gt;payload), <span class="keyword">sizeof</span>(*(<span class="built_in">list</span>)-&gt;payload))</span><br><span class="line">      |    </span><br></pre></td></tr></table></figure>
 </div></div><p>这样如果插入了一个错误类型的元素，编译器就会报错。</p>
 <ol start="2">
-<li>用 <code>__typeof__</code> 扩展强制类型转换</li>
+<li>用 <code>__typeof__</code> 扩展 强制类型转换</li>
 </ol>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> list_prepend(list, data) \</span></span><br><span class="line"><span class="meta">    list_prepend_raw(            \</span></span><br><span class="line"><span class="meta">        &amp;((list)-&gt;node), &amp;(__typeof__(*((list)-&gt;typeinfo)))&#123;data&#125;, sizeof(*((list)-&gt;typeinfo)))</span></span><br></pre></td></tr></table></figure>
 <p>这样在类型不兼容时也会报错</p>
