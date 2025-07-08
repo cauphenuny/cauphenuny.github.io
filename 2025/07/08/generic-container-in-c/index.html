@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>在 C 语言中写类型安全的泛型容器 | Cauphenuny's Blog</title><meta name="author" content="Cauphenuny"><meta name="copyright" content="Cauphenuny"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="https:&#x2F;&#x2F;danielchasehooper.com&#x2F;posts&#x2F;typechecked-generic-c-data-structures&#x2F;  比较可惜的是，在看到这篇博客之前，我已经写完了这学期数据结构的 oj 代码了  众所周知，用 C 写非侵入式泛型容器是很坐牢的事，要么全用 void* 一顿擦除，性能不高的同时还容易写错类型，要么写一个全是 define 的头文件，根据需要什么类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 C 语言中写类型安全的泛型容器">
+<meta property="og:url" content="https://cauphenuny.github.io/2025/07/08/generic-container-in-c/index.html">
+<meta property="og:site_name" content="Cauphenuny&#39;s Blog">
+<meta property="og:description" content="https:&#x2F;&#x2F;danielchasehooper.com&#x2F;posts&#x2F;typechecked-generic-c-data-structures&#x2F;  比较可惜的是，在看到这篇博客之前，我已经写完了这学期数据结构的 oj 代码了  众所周知，用 C 写非侵入式泛型容器是很坐牢的事，要么全用 void* 一顿擦除，性能不高的同时还容易写错类型，要么写一个全是 define 的头文件，根据需要什么类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cauphenuny.github.io/image/cover/1.jpg">
+<meta property="article:published_time" content="2025-07-08T11:23:53.000Z">
+<meta property="article:modified_time" content="2025-07-08T11:50:42.971Z">
+<meta property="article:author" content="Cauphenuny">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="Generic Programming">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cauphenuny.github.io/image/cover/1.jpg"><link rel="shortcut icon" href="/image/avatar.jpg"><link rel="canonical" href="https://cauphenuny.github.io/2025/07/08/generic-container-in-c/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":5,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '在 C 语言中写类型安全的泛型容器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/callout.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/image/background/0-blur30.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/image/cover/1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Cauphenuny's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">在 C 语言中写类型安全的泛型容器</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">在 C 语言中写类型安全的泛型容器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-08T11:23:53.000Z" title="发表于 2025-07-08 19:23:53">2025-07-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-08T11:50:42.971Z" title="更新于 2025-07-08 19:50:42">2025-07-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS/">CS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS/C/">C</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">672</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-07-08 19:50:42&quot;}" hidden></div><blockquote>
+<p><a target="_blank" rel="noopener" href="https://danielchasehooper.com/posts/typechecked-generic-c-data-structures/">https://danielchasehooper.com/posts/typechecked-generic-c-data-structures/</a></p>
+</blockquote>
+<p>比较可惜的是，在看到这篇博客之前，我已经写完了这学期数据结构的 oj 代码了</p>
+<hr>
+<p>众所周知，用 C 写非侵入式泛型容器是很坐牢的事，要么全用 <code>void*</code> 一顿擦除，性能不高的同时还容易写错类型，要么写一个全是 <code>define</code> 的头文件，根据需要什么类型就 <code>#define T int</code> 然后 <code>include</code> 一下，产生很多重复代码，而且全 <code>define</code> 很难 debug 或代码提示。</p>
+<p>这篇博客给出了一个令人耳目一新的方法</p>
+<p>效果是这样的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> value;</span><br><span class="line">&#125; Foo;</span><br><span class="line"></span><br><span class="line">List(<span class="type">int</span>) int_list = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">list_prepend(&amp;int_list, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">List(Foo) foo_list = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">list_prepend(&amp;foo_list, (Foo)&#123; <span class="number">5</span> &#125;);</span><br><span class="line">list_prepend(&amp;foo_list, (Foo)&#123; <span class="number">3</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// this won&#x27;t compile,</span></span><br><span class="line"><span class="comment">// although passing a int to Foo is acceptable according to Foo&#x27;s structure!</span></span><br><span class="line"><span class="comment">// list_prepend(&amp;foo_list, 7);</span></span><br><span class="line"></span><br><span class="line">list_for(item, &amp;foo_list) &#123;</span><br><span class="line">    <span class="comment">// `item` is of type `Foo *`</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, item-&gt;value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义容器时只需要在括号里加上类型参数，然后就获得了编译期类型检查，完全不影响运行时性能。</p>
+<p>容器算法用的是同一个函数，不需要 <code>list_prepend_int</code> 和 <code>list_prepend_foo</code> 等等。</p>
+<hr>
+<p>原理：</p>
+<p>首先用一个柔性数组成员存数据，这是容器节点类型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">next</span>, *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="type">char</span> data[];</span><br><span class="line">&#125; ListNode;</span><br></pre></td></tr></table></figure>
+<p>但这样相当于把类型擦除了，无法在编译时检查类型。为了实现类型安全，我们需要在容器中存储类型信息。</p>
+<p>定义一个 union，存下类型信息</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> List(type) \</span></span><br><span class="line"><span class="meta">union &#123;</span></span><br><span class="line">    ListNode* ndoe;</span><br><span class="line">    type* type_info;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<div class="callout" data-callout="example">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+</div>
+<div class="callout-title-inner">Example</div>
+</div>
+<div class="callout-content"><p><code>List(int) int_list;</code></p>
+</div></div><p>好了，那怎么用上这个类型信息呢？</p>
+<p>两种方案</p>
+<ol>
+<li>用三目运算符约束类型，因为三目运算符两个结果必须是 <code>is_convertible</code> 的</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> list_prepend(list, item) \</span></span><br><span class="line"><span class="meta">    list_prepend_impl(&amp;((list)-&gt;head), \</span></span><br><span class="line"><span class="meta">                  (1 ? (item) : (list)-&gt;type_info), \</span></span><br><span class="line"><span class="meta">                  sizeof(*(list)-&gt;type_info))</span></span><br></pre></td></tr></table></figure>
+
+<div class="callout" data-callout="error">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+</div>
+<div class="callout-title-inner">Error</div>
+</div>
+<div class="callout-content"><p></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">error: pointer type <span class="title function_">mismatch</span> <span class="params">(<span class="string">&#x27;Foo *&#x27;</span> and <span class="string">&#x27;Bar *&#x27;</span>)</span> [-Werror,-Wpointer-type-mismatch]</span><br><span class="line">   38 |     <span class="title function_">list_prepend</span><span class="params">(&amp;foo_list, &amp;bar)</span>;</span><br><span class="line">      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">note: expanded from macro <span class="string">&#x27;list_prepend&#x27;</span></span><br><span class="line">   <span class="number">15</span> |     _list_prepend(&amp;((<span class="built_in">list</span>)-&gt;head), (<span class="number">1</span> ? (item) : (<span class="built_in">list</span>)-&gt;payload), <span class="keyword">sizeof</span>(*(<span class="built_in">list</span>)-&gt;payload))</span><br><span class="line">      |    </span><br></pre></td></tr></table></figure>
+</div></div><p>这样如果插入了一个错误类型的元素，编译器就会报错。</p>
+<ol start="2">
+<li>用 <code>__typeof__</code> 扩展强制类型转换</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> list_prepend(list, data) \</span></span><br><span class="line"><span class="meta">    list_prepend_raw(            \</span></span><br><span class="line"><span class="meta">        &amp;((list)-&gt;node), &amp;(__typeof__(*((list)-&gt;typeinfo)))&#123;data&#125;, sizeof(*((list)-&gt;typeinfo)))</span></span><br></pre></td></tr></table></figure>
+<p>这样在类型不兼容时也会报错</p>
+<hr>
+<p>由于 <a target="_blank" rel="noopener" href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3037.pdf">2025年末</a> 前的编译器不认为两处分别定义的结构相同的匿名 <code>union/struct</code> 是同一个类型，如果需要传递参数或者进行赋值时，需要 <code>typedef</code> 出一个类型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="title function_">List</span><span class="params">(<span class="type">int</span>)</span> IntList;</span><br><span class="line"><span class="type">void</span> <span class="title function_">traverse</span><span class="params">(IntList* <span class="built_in">list</span>)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    IntList int_list = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    ...</span><br><span class="line">    traverse(&amp;int_list); <span class="comment">// ok!</span></span><br><span class="line"></span><br><span class="line">    List(<span class="type">int</span>) int_list_2 = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    ...</span><br><span class="line">    traverse(&amp;int_list_2); <span class="comment">// error: incompatible pointer type</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://cauphenuny.github.io">Cauphenuny</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://cauphenuny.github.io/2025/07/08/generic-container-in-c/">https://cauphenuny.github.io/2025/07/08/generic-container-in-c/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://cauphenuny.github.io" target="_blank">Cauphenuny's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C</a><a class="post-meta__tags" href="/tags/Generic-Programming/">Generic Programming</a></div><div class="post-share"><div class="social-share" data-image="/image/cover/1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/05/03/basics-of-diffusion/" title="Basics of Diffusion"><img class="cover" src="/image/cover/1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Basics of Diffusion</div></div><div class="info-2"><div class="info-item-1">Fundamentals       Theorem   For any distribution over (X,Y)(X,Y)(X,Y), we have argminf E∣∣f(X)−Y∣∣2=E[Y∣X]\text{argmin}_{f} \space \mathbb{E} ||f(X)-Y||^2=\mathbb{E}[Y|X]  argminf​ E∣∣f(X)−Y∣∣2=E[Y∣X]       Proof   argmin⁡ fE∣∣f(x)−y∣∣2=argmin⁡ fE∣∣f(x)−y∣∣2=argmin⁡ fEXEY∣X[f(x)−Y∣X=x]2=argmin⁡ f(x)EX[f(x)2−2f(x)EY∣X(Y∣X=x)+EY∣X(Y∣X=x)2]=EX(argmin⁡ f(x)f(x)2−2f(x)EY∣X(Y∣X=x)+EY∣X(Y∣X=x)2)\begin{aligned} &amp;\mathop{\operatorname{argmin}\,}_{f} \mathbb{E} \lvert \lvert f(x)-y \rvert  \rvert...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/11/22/brainf-k-generator/" title="brainfuck 代码生成工具 - 将C代码编译到brainfuck"><img class="cover" src="/image/cover/2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-22</div><div class="info-item-2">brainfuck 代码生成工具 - 将C代码编译到brainfuck</div></div><div class="info-2"><div class="info-item-1">最近在做一个编译原理lab ☝️🤓诶，我已经有结构化的AST和IR了，岂不是能不太费劲地地写出一些有意思的东西？ 就这样一拍脑袋给编译器加了个brainfuck后端 由于还没想好怎么实现栈，现在所有变量都是static的，也不支持递归函数调用  demo 12345678910/// file: test/int_size.cint main() &#123;    int bit = 0;    int v = 1;    while (v) &#123;        v = v * 2;        bit = bit + 1;    &#125;    return bit;&#125; 1234567891011121314$ build/compiler -brainz...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Cauphenuny</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/cauphenuny"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/08/generic-container-in-c/" title="在 C 语言中写类型安全的泛型容器">在 C 语言中写类型安全的泛型容器</a><time datetime="2025-07-08T11:23:53.000Z" title="发表于 2025-07-08 19:23:53">2025-07-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/03/basics-of-diffusion/" title="Basics of Diffusion">Basics of Diffusion</a><time datetime="2025-05-03T14:08:40.000Z" title="发表于 2025-05-03 22:08:40">2025-05-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/11/cod-lab-notes/" title="计组实验笔记">计组实验笔记</a><time datetime="2025-04-11T06:00:34.000Z" title="发表于 2025-04-11 14:00:34">2025-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/08/debug-amd64-program-on-arm-host/" title="在 arm host 上使用 gdb 调试 amd64 程序">在 arm host 上使用 gdb 调试 amd64 程序</a><time datetime="2025-04-08T13:54:41.000Z" title="发表于 2025-04-08 21:54:41">2025-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/22/brainf-k-generator/" title="brainfuck 代码生成工具 - 将C代码编译到brainfuck">brainfuck 代码生成工具 - 将C代码编译到brainfuck</a><time datetime="2024-11-21T16:05:35.000Z" title="发表于 2024-11-22 00:05:35">2024-11-22</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Cauphenuny</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>(() => {
+  const panguFn = () => {
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
+    else {
+      btf.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+        .then(() => {
+          pangu.autoSpacingPage()
+        })
+    }
+  }
+
+  const panguInit = () => {
+    if (false){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', panguInit, 'pangu')
+  document.addEventListener('DOMContentLoaded', panguInit)
+})()</script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.485870.xyz/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
