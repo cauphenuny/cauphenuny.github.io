@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>vim key | Cauphenuny's Blog</title><meta name="author" content="Cauphenuny"><meta name="copyright" content="Cauphenuny"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="normal mode: Ctrl-a 数字+1 Ctrl-x 数字-1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim key">
+<meta property="og:url" content="https://cauphenuny.github.io/2020/12/04/envs/vim-key/index.html">
+<meta property="og:site_name" content="Cauphenuny&#39;s Blog">
+<meta property="og:description" content="normal mode: Ctrl-a 数字+1 Ctrl-x 数字-1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cauphenuny.github.io/image/cover/5.jpg">
+<meta property="article:published_time" content="2020-12-04T00:43:19.000Z">
+<meta property="article:modified_time" content="2024-01-14T03:59:18.000Z">
+<meta property="article:author" content="Cauphenuny">
+<meta property="article:tag" content="vim">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cauphenuny.github.io/image/cover/5.jpg"><link rel="shortcut icon" href="/image/avatar.jpg"><link rel="canonical" href="https://cauphenuny.github.io/2020/12/04/envs/vim-key/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":5,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'vim key',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/callout.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/image/background/0-blur30.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">70</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/image/cover/5.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Cauphenuny's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">vim key</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">vim key</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-04T00:43:19.000Z" title="发表于 2020-12-04 08:43:19">2020-12-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-14T03:59:18.000Z" title="更新于 2024-01-14 11:59:18">2024-01-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">190</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2024-01-14 11:59:18&quot;}" hidden></div><p><strong>normal mode:</strong></p>
+<p><code>Ctrl-a</code> 数字+1<br>
+<code>Ctrl-x</code> 数字-1</p>
+<span id="more"></span>
+<p><code>Ctrl-o</code>：跳转到上一次光标所在位置<br>
+<code>0</code>：行首<br>
+<code>^</code>：行首非空字符<br>
+<code>$</code>：行末<br>
+<code>g_</code>：行末非空字符<br>
+<code>gh</code>：选择<br>
+<code>%</code>：跳转到匹配括号<br>
+<code>[]</code>：上一个在行首的<code>&#125;</code><br>
+<code>][</code>：下一个在行首的<code>&#123;</code><br>
+<code>&#123;</code>：上一个代码块末尾<br>
+<code>&#125;</code>： 下一个代码块末尾<br>
+<code>[[</code>： 文件开头行<br>
+<code>]]</code>： 文件末尾行</p>
+<p><code>c</code> 删除并插入</p>
+<p><code>[verb]i[char]</code>： <code>[char]</code>可为 <code>()[]&#123;&#125;</code> ，表示范围在 <code>[char]</code> 所在的匹配括号内容</p>
+<blockquote>
+<p>例：<br>
+<code>memset(a, 0, sizeof(0));</code><br>
+光标在第 1 个 0 的位置，输入 <code>di(</code>：删除<code>a, 0, sizeof(0)</code>。</p>
+</blockquote>
+<hr>
+<p><strong>insert mode:</strong></p>
+<p><code>Ctrl-w</code>：删除单词<br>
+<code>Ctrl-u</code>：删除行，保留缩进<br>
+<code>Ctrl-t</code>：缩进++<br>
+<code>Ctrl-d</code>：缩进–<br>
+<code>Ctrl-n/p</code>：补全</p>
+<hr>
+<p><strong>visual mode:</strong></p>
+<p><code>&gt;</code>：缩进++<br>
+<code>&lt;</code>：缩进–</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://cauphenuny.github.io">Cauphenuny</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://cauphenuny.github.io/2020/12/04/envs/vim-key/">https://cauphenuny.github.io/2020/12/04/envs/vim-key/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://cauphenuny.github.io" target="_blank">Cauphenuny's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vim/">vim</a></div><div class="post-share"><div class="social-share" data-image="/image/cover/5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/12/26/OI/exam-20201226/" title="20201226~27 考试总结"><img class="cover" src="/image/cover/8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">20201226~27 考试总结</div></div><div class="info-2"><div class="info-item-1">考的是六省联考的卷子 problem Day1 review 开考先看三题, 发现第一题是很容易写假的贪心题的样子，于是就跳了。看到第二题，正好之前见过 cccc…c^{c^{c^{c^{\ldots}}}}cccc… 这种套路，决定开这个，第三题貌似是个数学题，弃了。 然后调着调着就再一次发现了著名的坑，等下写，调出来的时候已经过了两个半小时，然后一测第 3 个大样例就 T飞，到处卡常，结果发现没有预处理 phi[] 数组，，， 三个小时过了，赶紧把 T3 30pts 暴力写了，没有仔细想第一题，甚至没看数据范围，可能是最大的错误 solution exam problem 比较容易的题，正解是三分，但是可以暴力 O(值域) 搞过去 考虑一个状态 T ，如果 A 小于 B ，那么就可以将所有公布时间在 T 之前的学科移到 T 时刻公布，“挤出”sum1 的时间，用于将公布时间在 T 之后的学科移到 T 时刻，花掉 sum2 的时间，这一部分的代价为 min⁡(sum1,sum2)⋅A\min(sum_1,sum_2)\cdot Amin(sum1​,sum2​)⋅A ，如果...</div></div></div></a><a class="pagination-related" href="/2020/12/03/OI/review-cf708c/" title="CF708C Centroids 总结"><img class="cover" src="/image/cover/7.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">CF708C Centroids 总结</div></div><div class="info-2"><div class="info-item-1">CF708C Centroids 题意简述： 给定一棵 nnn 个点的树，你可以删除一条边并增加一条边，形成一棵新树。 问每个点在进行这样的操作后，是否可能成为新树的重心。 1≤n≤4⋅1051 \le n \le 4\cdot 10^51≤n≤4⋅105  发现没有是一个无根树，很难处理。考虑把树的重心 rt 找出来，然后想象把这颗树从 rt 处提起来  于是对于子树内的每个点 v ，大于 ⌊n2⌋\left\lfloor\dfrac{n}{2}\right\rfloor⌊2n​⌋ 的部分只可能出现在 v 的父亲 u 所在联通块上。  即红色区域。那么我们需要把红色区域拆分成两个大小不大于 ⌊n2⌋\left\lfloor\dfrac{n}{2}\right\rfloor⌊2n​⌋ 的部分，分别接到 v 上。 拆分有几个选择，拆掉 u 的父亲所在子树（即上图 1 部分），或者把与 v 同级的子树拆掉，（即上图 2,3,4 ）。 设分出来不大于 ⌊n2⌋\left\lfloor\dfrac{n}{2}\right\rfloor⌊2n​⌋ 的部分的最大大小为...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/01/06/OI/autoswitch-inputmethod-in-vim/" title="vim 切换模式之后自动切换输入法"><img class="cover" src="/image/cover/4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-06</div><div class="info-item-2">vim 切换模式之后自动切换输入法</div></div><div class="info-2"><div class="info-item-1">由于 vim 在 Normal 模式并不能识别中文输入法打出的命令，所以可以考虑在退出插入模式时自动切换输入法为英文。 使用 InputSourceSelector 12345678910111213141516171819if has(&#x27;mac&#x27;)    function SwitchInput()        let g:stored_input = split(system(&#x27;input_selector current&#x27;))[0]        if g:stored_input != &quot;com.apple.keylayout.ABC&quot;            exec system(&#x27;input_selector select com.apple.keylayout.ABC&#x27;)        endif    endfunction    set ttimeoutlen=100    call SwitchInput()    autocmd InsertLeave * call...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Cauphenuny</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">70</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/cauphenuny"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/11/CS/notes/3d-rotation-matrix/" title="一种对 3D 旋转矩阵的直观理解">一种对 3D 旋转矩阵的直观理解</a><time datetime="2025-10-10T16:07:00.000Z" title="发表于 2025-10-11 00:07:00">2025-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/25/CS/tricks/coroutine-in-c/" title="Coroutines in C">Coroutines in C</a><time datetime="2025-09-25T13:30:14.000Z" title="发表于 2025-09-25 21:30:14">2025-09-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/08/CS/tricks/generic-container-in-c/" title="在 C 语言中写类型安全的泛型容器">在 C 语言中写类型安全的泛型容器</a><time datetime="2025-07-08T11:23:53.000Z" title="发表于 2025-07-08 19:23:53">2025-07-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/03/CS/notes/basics-of-diffusion/" title="Basics of Diffusion">Basics of Diffusion</a><time datetime="2025-05-03T14:08:40.000Z" title="发表于 2025-05-03 22:08:40">2025-05-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/08/CS/tricks/debug-amd64-program-on-arm-host/" title="在 arm host 上使用 gdb 调试 amd64 程序">在 arm host 上使用 gdb 调试 amd64 程序</a><time datetime="2025-04-08T13:54:41.000Z" title="发表于 2025-04-08 21:54:41">2025-04-08</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Cauphenuny</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>(() => {
+  const panguFn = () => {
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
+    else {
+      btf.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+        .then(() => {
+          pangu.autoSpacingPage()
+        })
+    }
+  }
+
+  const panguInit = () => {
+    if (false){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', panguInit, 'pangu')
+  document.addEventListener('DOMContentLoaded', panguInit)
+})()</script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline.485870.xyz/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
